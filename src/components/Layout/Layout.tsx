@@ -1,9 +1,8 @@
-import Header from '../Header';
-const Layout = ({ children }) => {
+import { Outlet } from 'react-router-dom';
+const Layout = () => {
   return (
     <main className="max-container w-[95%] xl:w-[90%]">
-      <Header />
-      {children}
+      <Outlet />
     </main>
   );
 };

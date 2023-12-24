@@ -1,6 +1,6 @@
 export const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'About us', href: '/about' },
+  { label: 'users', href: '/users' },
   { label: 'LinkedIn', href: 'http://www.linkedin.com' },
   { label: 'Twitter', href: 'http://www.linkedin.com' },
 ];

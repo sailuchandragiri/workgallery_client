@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axios from '../api/axios';
+
 import useAuth from '../hooks/useAuth';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { axiosPrivate, axiosWithCredentials } from '../api/axios';
 
 interface IUser {
   user: string;
@@ -31,17 +32,18 @@ const Login = () => {
       email = null;
     }
     try {
-      const response = await axios.post(
+      //for setting up cookies we are using private method
+      const response = await axiosPrivate.post(
         'auth/login',
         JSON.stringify({ userName, email, password: userData.password }),
       );
       console.log(response);
       const accessToken: string = response?.data?.accessToken;
       const name: string = response?.data?.userName;
-      const sub: string = response?.data?.subscription;
+      const sub: string = response?.data?.role;
       // const id: string = response?.data?.id;
       const email_r: string = response?.data?.email;
-      setAuth({ accessToken, userName: name, email: email_r, sub });
+      setAuth({ accessToken: accessToken, userName: name, email: email_r, sub: sub });
       setUserData({ user: '', password: '' });
       navigate(fromLocation, { replace: true });
       //success send the user back to where they were

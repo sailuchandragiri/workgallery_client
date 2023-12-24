@@ -5,18 +5,24 @@ import UserOnBoarding from './pages/UserOnBoarding';
 import Hero from './pages/Hero';
 import RequireAuth from './components/auth/RequireAuth';
 import { subscription } from './constants/constants';
+import UserList from './pages/UserList';
+import Header from './components/Header';
 function App() {
   return (
-    <Layout>
+    <>
+      <Header />
       <Routes>
-        <Route path="login" element={<Login />} />
-        <Route element={<RequireAuth allowedRole={subscription.free} />}>
-          <Route path="/" element={<Hero />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="login" element={<Login />} />
+          <Route element={<RequireAuth allowedRole={subscription.free} />}>
+            <Route path="/" element={<Hero />} />
+            <Route path="/users" element={<UserList />} />
+          </Route>
+          <Route path="/register" element={<UserOnBoarding />} />
+          <Route path="*" element={<h1>Not found</h1>} />
         </Route>
-        <Route path="/register" element={<UserOnBoarding />} />
-        <Route path="/about" element={<h1>About</h1>} />
       </Routes>
-    </Layout>
+    </>
   );
 }
 

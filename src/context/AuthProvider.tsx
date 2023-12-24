@@ -1,7 +1,22 @@
 import { createContext, useState } from 'react';
-const AuthContext = createContext({ userName: '', email: '', accessToken: '', sub: null }); //empty context
+const initialAuth = {
+  email: null,
+  accessToken: null,
+  userName: null,
+  sub: null,
+};
+const AuthContext = createContext({}); //empty context
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({ email: null, userName: null });
-  return <AuthContext.Provider value={{ auth, setAuth }}>{children}</AuthContext.Provider>;
+  const [auth, setAuth] = useState(initialAuth);
+  //setAuth({ accessToken: accessToken, userName: name, email: email_r, sub: sub });
+  const logout = () => {
+    // Clear authentication information (replace this with your actual logic)
+    setAuth(initialAuth);
+
+    // Redirect to the login page (replace '/login' with your login page route)
+    window.location.replace('/login');
+  };
+
+  return <AuthContext.Provider value={{ auth, setAuth, logout }}>{children}</AuthContext.Provider>;
 };
 export default AuthContext;

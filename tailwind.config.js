@@ -16,10 +16,9 @@ export default {
       '7xl': ['80px', '98px'],
       '8xl': ['96px', '106px'],
     },
-
     extend: {
       fontFamily: {
-        palanquin: ['Palanquin', 'sans-serif'],
+        gilroy: ['gilroy', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {
