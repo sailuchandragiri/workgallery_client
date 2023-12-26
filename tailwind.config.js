@@ -28,6 +28,9 @@ export default {
         'slate-gray': '#6D6D6D',
         'pale-blue': '#F5F6FF',
         'white-400': 'rgba(255, 255, 255, 0.80)',
+        btnbackground: '#026BF6',
+        btnborder: '#4285F4',
+        fontblue: '#1A7DFF',
       },
       boxShadow: {
         '3xl': '0 10px 40px rgba(0, 0, 0, 0.1)',
@@ -35,6 +38,7 @@ export default {
       backgroundImage: {
         hero: "url('assets/images/collection-background.svg')",
         card: "url('assets/images/thumbnail-background.svg')",
+        workAI: "url('assets/images/WorkAIBG.svg')",
       },
       screens: {
         wide: '1440px',

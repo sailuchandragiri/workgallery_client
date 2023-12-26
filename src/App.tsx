@@ -7,6 +7,7 @@ import RequireAuth from './components/auth/RequireAuth';
 import { subscription } from './constants/constants';
 import UserList from './pages/UserList';
 import Header from './components/Header';
+import LandingPage from './pages/LandingPage';
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Hero />} />
             <Route path="/users" element={<UserList />} />
           </Route>
+          <Route path="/about" element={<LandingPage />} />
           <Route path="/register" element={<UserOnBoarding />} />
           <Route path="*" element={<h1>Not found</h1>} />
         </Route>
