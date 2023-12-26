@@ -31,6 +31,9 @@ export default {
         btnbackground: '#026BF6',
         btnborder: '#4285F4',
         fontblue: '#1A7DFF',
+        subtitle: '#D0D0D0',
+        pf_subtitle: 'rgba(255, 255, 255, 0.60)',
+        footer_font: '#9CA3AF',
       },
       boxShadow: {
         '3xl': '0 10px 40px rgba(0, 0, 0, 0.1)',
