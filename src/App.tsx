@@ -6,6 +6,8 @@ import Hero from './pages/Hero';
 import RequireAuth from './components/auth/RequireAuth';
 import { subscription } from './constants/constants';
 import UserList from './pages/UserList';
+import Header from './components/Header';
+import LandingPage from './pages/LandingPage';
 import PersistLogin from './components/auth/PersistLogin';
 import OAuthController from './components/auth/OAuthController';
 //TODO:Disable react dev tools here
@@ -37,6 +39,12 @@ function App() {
         />
       </Route>
     </Routes>
+          <Route path="/about" element={<LandingPage />} />
+          <Route path="/register" element={<UserOnBoarding />} />
+          <Route path="*" element={<h1>Not found</h1>} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
