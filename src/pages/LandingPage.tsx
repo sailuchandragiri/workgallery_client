@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import FriendsSinging from '../assets/FiendsSinging.svg';
 import ShareFriends from '../assets/ShareFriends.svg';
 import UploadToCloud from '../assets/UploadTCloud.png';
@@ -76,7 +76,6 @@ const LandingPage = () => {
   };
   return (
     <div className="bg-[#040102] pt-12 text-white font-gilroy text-center md:text-left">
-      <header className="text-xl font-normal mx-6 md:mx-20">workgallary</header>
       {/* Desktop and tab view of connect */}
       <div className="hidden md:block mx-6 md:mx-20">
         <div className="mt-14 flex justify-between ...">
@@ -423,7 +422,7 @@ const LandingPage = () => {
                 <img src={Format} alt="Send" />
               </div>
               <div className="font-normal text-xl leading-8">
-                Save time by overviewing <br /> the snippets with AI
+                Save time by over viewing <br /> the snippets with AI
               </div>
               <div className="font-normal text-sm text-pf_subtitle">
                 Stand out in seconds. AI showcases your <br /> skills and experience in bite-sized{' '}

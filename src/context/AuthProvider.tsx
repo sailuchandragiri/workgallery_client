@@ -1,22 +1,26 @@
 import { createContext, useState } from 'react';
-const initialAuth = {
-  email: null,
+export const initialAuth = {
   accessToken: null,
   userName: null,
-  sub: null,
 };
+
+interface IinitialAuth {
+  email: null | string;
+  accessToken: null | string;
+  userName: null | string;
+}
 const AuthContext = createContext({}); //empty context
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(initialAuth);
+  const [auth, setAuth] = useState<IinitialAuth>(initialAuth);
+
+  const [persist, setPersist] = useState(JSON.parse(localStorage.getItem('persist')) || false);
+  console.log(persist);
   //setAuth({ accessToken: accessToken, userName: name, email: email_r, sub: sub });
-  const logout = () => {
-    // Clear authentication information (replace this with your actual logic)
-    setAuth(initialAuth);
 
-    // Redirect to the login page (replace '/login' with your login page route)
-    window.location.replace('/login');
-  };
-
-  return <AuthContext.Provider value={{ auth, setAuth, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ auth, setAuth, persist, setPersist }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 export default AuthContext;

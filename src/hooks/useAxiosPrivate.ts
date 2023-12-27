@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import { axiosPrivate } from '../api/axios';
 import useRefreshToken from './useRefreshToken';
 import useAuth from './useAuth';
+import useLogout from './useLogout';
 
 const useAxiosPrivate = () => {
-  const { auth, logout } = useAuth();
+  const { auth } = useAuth();
   const refresh = useRefreshToken();
+  const logout = useLogout();
 
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(

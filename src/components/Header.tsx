@@ -1,31 +1,47 @@
 import { NavLink } from 'react-router-dom';
 import { navLinks } from '../constants/constants';
+import useAuth from '../hooks/useAuth';
+import useLogout from '../hooks/useLogout';
 
 const Header = () => {
+  const { auth } = useAuth();
+  const logout = useLogout();
   return (
-    <header className="py-9">
-      <div className="nav flex items-center">
-        <NavLink to="/" className="text-lg font-bold">
+    <header className="py-6">
+      <div className="flex items-center justify-between">
+        <NavLink to="/" className="text-lg font-bold inline-block justify-self-start	 ">
           The Work Gallery
         </NavLink>
-        <ul className="ml-auto flex gap-3  bg-gray-100 py-4 px-4  rounded-lg items-center">
+        <ul className="flex gap-3   rounded-lg items-center justify-center  justify-self-center	">
           {navLinks.map((link) => (
-            <li key={link.label} className="nav_link">
+            <li key={link.label} className="">
               <NavLink
-                className="nav_link  text-gray-800 font-medium  inline-block bg-primary px-4 py-2 rounded-md"
+                className=" text-gray-800 font-medium  inline-block  px-4 py-2 rounded-md"
                 to={link.href}
               >
                 {link.label}
               </NavLink>
             </li>
           ))}
-          <li className="nav__item">
-            <NavLink
-              className="nav__link inline-block text-white active bg-gray-800 px-4 py-2 rounded-md"
-              to="/register"
-            >
-              Sign up
-            </NavLink>
+        </ul>
+        <ul>
+          <li className="">
+            {auth?.userName ? (
+              <NavLink
+                className="inline-block text-white active bg-gray-800 px-4 py-2 rounded-md"
+                to="/"
+                onClick={() => logout()}
+              >
+                logout
+              </NavLink>
+            ) : (
+              <NavLink
+                className=" inline-block text-white active bg-gray-800 px-4 py-2 rounded-md"
+                to="/register"
+              >
+                Sign up
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>
