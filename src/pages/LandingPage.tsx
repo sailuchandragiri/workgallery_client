@@ -31,6 +31,7 @@ import Stairs from '../assets/Stairs.svg';
 import PinkSun from '../assets/PinkSun.svg';
 import Chatbubble from '../assets/ChatBubble.svg';
 import Line from '../assets/Horizontal_1.svg';
+import axios from '../api/axios';
 
 const LandingPage = () => {
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
@@ -43,9 +44,19 @@ const LandingPage = () => {
   const colors = ['bg-[#026BF6]', 'bg-[#43943C]', 'bg-[#9E00FF]'];
   const borderColors = ['border-[#4285F4]', 'border-[#1EA713]', 'border-[#B042F4]'];
   const shadowColors = ['shadow-teal-400', 'shadow-green-500', 'shadow-purple-500'];
-
+  const [buttonText, setButtonText] = useState('Join Wait List');
   const handleClick = () => {
     setIsButtonClicked((prev) => !prev);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post('/waitlist', JSON.stringify({ email }));
+    console.log(response);
+    if (response.status === 200) {
+      setButtonText('You are added');
+      setIsButtonClicked((prev) => !prev);
+    }
   };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -141,20 +152,26 @@ const LandingPage = () => {
             <div className="flex justify-center mt-20">
               <div className="flex justify-center items-center">
                 {isButtonClicked ? (
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <input
                       type="email"
                       placeholder="enter email"
                       onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      className="border-4  border-gray-700 rounded-full py-3 px-4 bg-transparent  font-thin focus:outline-none w-[70%]"
                     />
-                    <button>submit</button>
+                    <button
+                      className={`w-[530px] my-5 font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
+                    >
+                      Join Wait list
+                    </button>
                   </form>
                 ) : (
                   <button
                     onClick={handleClick}
                     className={`w-[530px] font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
                   >
-                    Join the waitlist
+                    {buttonText}
                   </button>
                 )}
               </div>

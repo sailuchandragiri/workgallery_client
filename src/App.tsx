@@ -15,11 +15,12 @@ import UploadFile from './components/UploadFile';
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/" element={<Layout />}>
         {/*public routes*/}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<UserOnBoarding />} />
-        <Route path="/" element={<LandingPage />} />
+
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/connections" element={<Connections />} />
         <Route path="/upload" element={<UploadFile />} />
