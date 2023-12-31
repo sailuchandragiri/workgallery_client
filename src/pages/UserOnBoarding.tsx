@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
+import GitHubLogo from '../assets/github.svg';
+import GoogleLogo from '../assets/google.svg';
 import OnBoardingFlow from '../components/OnBoardingFlow';
 import { USER_REGEX } from '../constants/constants';
+import { getGoogleUrl } from '../utils/getGoogleUrl';
+import { getGitHubUrl } from '../utils/getGithubUrl';
+import { useNavigate, useLocation } from 'react-router-dom';
 const CollectUserName = ({ onNext }) => {
   const [userName, setUserName] = useState('');
   const [validUserName, setValidUserName] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const fromLocation = location.state?.from?.pathname || '/';
   useEffect(() => {
     let isMounted = true;
     setErrorMsg('');
@@ -39,28 +47,68 @@ const CollectUserName = ({ onNext }) => {
   }, [userName]);
   return (
     <section className="">
-      <h1 className="text-8xl text-center items-start pb-16">Connect</h1>
-      <form className="flex justify-center flex-col w-[30%] mx-auto">
-        <input
-          type="text"
-          value={userName}
-          className="py-3  mt-5 text-black px-16 text-lg rounded-full border border-black"
-          placeholder="enter username"
-          onChange={(e) => setUserName(e.target.value)}
-          minLength={5}
-        />
-        <p className="text-center">{errorMsg}</p>
-        <button
-          onClick={() => onNext({ userName })}
-          disabled={!validUserName}
-          className="py-3  mt-5 bg-black px-16 text-lg rounded-full cursor-auto disabled:opacity-50 text-white border border-black"
+      <div className="w-[80%] xl:w-[30%] mx-auto">
+        <h1 className="text-2xl items-start xl:text-6xl py-3">Connect</h1>
+        <p className="py-5 text-xl font-thin">
+          Craft Your Profile with WorkGallery, Elevate Your Presence, and Connect with Like-minded
+          Creatives
+        </p>
+        <form className="flex justify-center flex-col mx-auto">
+          <div className="relative pb-7">
+            <label htmlFor="username" className="block text-gray-500">
+              Username
+            </label>
+            <input
+              type="text"
+              value={userName}
+              className=" text-gray-700 text-lg  border-b-2 border-black focus:outline-none w-full"
+              onChange={(e) => setUserName(e.target.value)}
+              minLength={5}
+            />
+            <p className="text-center absolute right-0">{errorMsg}</p>
+          </div>
+
+          <button
+            onClick={() => onNext({ userName })}
+            disabled={!validUserName}
+            className="py-3  mt-5 bg-accent px-16 text-lg rounded-full cursor-auto disabled:opacity-30 text-white border border-black"
+          >
+            submit
+          </button>
+        </form>
+        <p className="text-center py-3">or</p>
+        <a
+          className="border border-gray-500 py-2 text-gray-500 font-medium text-sm leading-snug uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-2"
+          href={getGoogleUrl(fromLocation)}
+          role="button"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="light"
         >
-          submit
-        </button>
-      </form>
-      <p className="text-center">
-        Already have an account ? <a href="/login">login here</a>
-      </p>
+          <img
+            className="pr-2 border-spacing-1"
+            src={GoogleLogo}
+            alt=""
+            style={{ height: '2rem' }}
+          />
+          Login with Google
+        </a>
+        <a
+          className="py-2 border text-gray-500 border-gray-500  font-medium text-sm leading-snug uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
+          href={getGitHubUrl(fromLocation)}
+          role="button"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="light"
+        >
+          <img className="pr-2" src={GitHubLogo} alt="" style={{ height: '2.2rem' }} />
+          Login with GitHub
+        </a>
+        <p className="text-center py-2">
+          Already have an account ?{' '}
+          <a href="/login" className="text-accent underline">
+            login here
+          </a>
+        </p>
+      </div>
     </section>
   );
 };

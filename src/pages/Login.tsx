@@ -10,11 +10,16 @@ interface IUser {
   user: string;
   password: string;
 }
+interface IFocus {
+  user: boolean;
+  password: boolean;
+}
 
 const Login = () => {
   const { setAuth, persist, setPersist } = useAuth();
   const [userData, setUserData] = useState<IUser>({ user: '', password: '' });
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [isFocused, setIsFocused] = useState<IFocus>({ user: false, password: false });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +28,10 @@ const Login = () => {
   //getting the  location of user before they came to login
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleFocus(e) {
+    setIsFocused((prev) => ({ ...prev, [e.target.name]: true }));
   }
   async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -70,68 +79,98 @@ const Login = () => {
   }, [persist]);
   return (
     <section>
-      <form onSubmit={submitHandler} className="flex flex-col mx-auto w-[50%]">
-        <div className="py-10">
-          <label>Username or Email:</label>
+      <div className="w-[80%] xl:w-[40%] mx-auto">
+        <h3 className="text-2xl xl:text-4xl xl:py-5">Login</h3>
+        <p className="text-sm py-3">Connect with over 1000 New profiles</p>
+        <form onSubmit={submitHandler}>
+          <div className="relative py-3">
+            <label
+              className={`absolute  text-gray-500 font-thin transition-all ${
+                isFocused?.user ? 'transform scale-75 bottom-7 -left-4' : ''
+              }`}
+              htmlFor="user"
+            >
+              Username or Email:
+            </label>
+            <input
+              type="text"
+              className="border-b-2  border-gray-700  font-thin focus:outline-none w-full"
+              name="user"
+              id="user"
+              value={userData.user}
+              onChange={changeHandler}
+              minLength={6}
+              onFocus={handleFocus}
+              autoFocus={true}
+              maxLength={25}
+            />
+          </div>
+          <div className="relative py-3">
+            <label
+              className={`absolute  text-gray-500 font-thin transition-all ${
+                isFocused.password ? 'transform scale-75 bottom-7 -left-2' : ''
+              }`}
+              htmlFor="pwd"
+            >
+              Password:
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="pwd"
+              value={userData.password}
+              onChange={changeHandler}
+              className="border-b-2  border-gray-700 focus:outline-none w-full"
+              minLength={6}
+              maxLength={32}
+              onFocus={handleFocus}
+            />
+          </div>
+          <div>
+            <input type="checkbox" id="persist" onChange={togglePersist} checked={persist} />
+            <label htmlFor="persist">Remember me</label>
+          </div>
+          <p className="text-center">{errorMsg}</p>
           <input
-            type="text"
-            className="border border-black"
-            name="user"
-            value={userData.user}
-            onChange={changeHandler}
+            type="submit"
+            value="Login"
+            className="text-white mt-5 border border-gray-600 cursor-pointer bg-accent py-3  rounded-full w-full"
           />
-        </div>
-        <div className="">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={userData.password}
-            onChange={changeHandler}
-            className="border border-black"
+          <p className="text-center py-2">or</p>
+        </form>
+
+        <a
+          className="border border-gray-500 py-2 text-gray-500 font-medium text-sm leading-snug uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-2"
+          href={getGoogleUrl(fromLocation)}
+          role="button"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="light"
+        >
+          <img
+            className="pr-2 border-spacing-1"
+            src={GoogleLogo}
+            alt=""
+            style={{ height: '2rem' }}
           />
-        </div>
-        <p className="text-center">{errorMsg}</p>
-
-        <input
-          type="submit"
-          value="Login"
-          className="text-white my-10 cursor-pointer bg-black py-3 px-10 rounded-md"
-        />
-      </form>
-
-      <a
-        className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
-        style={{ backgroundColor: '#3b5998' }}
-        href={getGoogleUrl(fromLocation)}
-        role="button"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="light"
-      >
-        <img className="pr-2" src={GoogleLogo} alt="" style={{ height: '2rem' }} />
-        Continue with Google
-      </a>
-      <a
-        className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
-        style={{ backgroundColor: '#55acee' }}
-        href={getGitHubUrl(fromLocation)}
-        role="button"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="light"
-      >
-        <img className="pr-2" src={GitHubLogo} alt="" style={{ height: '2.2rem' }} />
-        Continue with GitHub
-      </a>
-      <div>
-        <input type="checkbox" id="persist" onChange={togglePersist} checked={persist} />
-        <label htmlFor="persist">Remember me</label>
-      </div>
-      <p className="text-center">
-        Don't have an account ?{' '}
-        <a href={`/register`} className="font-bold">
-          Register Here
+          Login with Google
         </a>
-      </p>
+        <a
+          className="py-2 border text-gray-500 border-gray-500  font-medium text-sm leading-snug uppercase rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
+          href={getGitHubUrl(fromLocation)}
+          role="button"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="light"
+        >
+          <img className="pr-2" src={GitHubLogo} alt="" style={{ height: '2.2rem' }} />
+          Login with GitHub
+        </a>
+        <p className="text-center py-4">
+          Don't have an account ?{' '}
+          <a href={`/register`} className="font-bold  text-accent underline">
+            Register Here
+          </a>
+        </p>
+      </div>
     </section>
   );
 };

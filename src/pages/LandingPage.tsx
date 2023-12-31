@@ -33,6 +33,8 @@ import Chatbubble from '../assets/ChatBubble.svg';
 import Line from '../assets/Horizontal_1.svg';
 
 const LandingPage = () => {
+  const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
+  const [email, setEmail] = useState('');
   const TitleImages = [Connect, Create, Elevate];
   const LeftTopImages = [FriendsSinging, Sprinkle, Rocket];
   const LeftBottomImages = [ShareFriends, Designer, Stairs];
@@ -42,6 +44,9 @@ const LandingPage = () => {
   const borderColors = ['border-[#4285F4]', 'border-[#1EA713]', 'border-[#B042F4]'];
   const shadowColors = ['shadow-teal-400', 'shadow-green-500', 'shadow-purple-500'];
 
+  const handleClick = () => {
+    setIsButtonClicked((prev) => !prev);
+  };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -76,6 +81,7 @@ const LandingPage = () => {
   };
   return (
     <div className="bg-[#040102] pt-12 text-white font-gilroy text-center md:text-left">
+      <header className="text-xl font-normal mx-6 md:mx-20">workgallary</header>
       {/* Desktop and tab view of connect */}
       <div className="hidden md:block mx-6 md:mx-20">
         <div className="mt-14 flex justify-between ...">
@@ -134,11 +140,23 @@ const LandingPage = () => {
             </div>
             <div className="flex justify-center mt-20">
               <div className="flex justify-center items-center">
-                <button
-                  className={`w-[530px] font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
-                >
-                  Join the waitlist
-                </button>
+                {isButtonClicked ? (
+                  <form>
+                    <input
+                      type="email"
+                      placeholder="enter email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <button>submit</button>
+                  </form>
+                ) : (
+                  <button
+                    onClick={handleClick}
+                    className={`w-[530px] font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
+                  >
+                    Join the waitlist
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -285,7 +303,7 @@ const LandingPage = () => {
         style={{ backgroundImage: `url(${Desktop_12})` }}
       >
         <div className="text-lg md:text-4xl font-bold text-center font-gilroy">
-          Say <strong className="text-fontblue">Goodbye to the Old Style</strong> of <br /> Editing
+          Say <strong className="text-accent">Goodbye to the Old Style</strong> of <br /> Editing
           Portfolio
         </div>
         <div className="text-sm md:text-2xl text-pf_subtitle font-normal text-center">
@@ -312,8 +330,8 @@ const LandingPage = () => {
       >
         <div className="flex gap-3 flex-col justify-center ...">
           <div className="text-xl font-semibold text-center font-gilroy">
-            <strong className="text-fontblue">Workgallery AI: </strong> Your Secret <br /> Weapon
-            for a Portfolio that Wows
+            <strong className="text-accent">Workgallery AI: </strong> Your Secret <br /> Weapon for
+            a Portfolio that Wows
           </div>
           <div className="text-sm  text-pf_subtitle font-normal text-center">
             Power up your workflow: Extensions & pipelines meet editing nirvana.
@@ -376,8 +394,8 @@ const LandingPage = () => {
       >
         <div className="flex gap-6 flex-col justify-center ...">
           <div className="text-2xl md:text-4xl font-bold text-center font-gilroy">
-            <strong className="text-fontblue">Workgallery AI: </strong> Your Secret <br /> Weapon
-            for a Portfolio that Wows
+            <strong className="text-accent">Workgallery AI: </strong> Your Secret <br /> Weapon for
+            a Portfolio that Wows
           </div>
           <div className="text-lg md:text-xl text-pf_subtitle font-normal text-center">
             Power up your workflow: Extensions & pipelines meet editing nirvana.
@@ -422,7 +440,7 @@ const LandingPage = () => {
                 <img src={Format} alt="Send" />
               </div>
               <div className="font-normal text-xl leading-8">
-                Save time by over viewing <br /> the snippets with AI
+                Save time by overviewing <br /> the snippets with AI
               </div>
               <div className="font-normal text-sm text-pf_subtitle">
                 Stand out in seconds. AI showcases your <br /> skills and experience in bite-sized{' '}
@@ -437,8 +455,8 @@ const LandingPage = () => {
       <div className="mt-14 mx-6 md:mx-10 block md:hidden">
         <div className="flex gap-4 flex-col justify-center ...">
           <div className="text-xl font-semibold text-center font-gilroy">
-            <strong className="text-fontblue">Workgallery AI: </strong> Your Secret <br /> Weapon
-            for a Portfolio that Wows
+            <strong className="text-accent">Workgallery AI: </strong> Your Secret <br /> Weapon for
+            a Portfolio that Wows
           </div>
           <div className="text-sm text-pf_subtitle font-normal text-center">
             Power up your workflow: Extensions & pipelines meet editing nirvana.
@@ -456,7 +474,7 @@ const LandingPage = () => {
       <div className="mt-14 mx-6 md:mx-10 p-8 hidden md:block font-gilroy">
         <div className="flex gap-6 flex-col justify-center ...">
           <div className="text-4xl font-bold text-center font-gilroy">
-            <strong className="text-fontblue">Networking Just Got Better </strong> with <br /> The
+            <strong className="text-accent">Networking Just Got Better </strong> with <br /> The
             Work Gallery
           </div>
           <div className="text-xl text-pf_subtitle font-normal text-center">

@@ -10,6 +10,7 @@ import OAuthController from './components/auth/OAuthController';
 import LandingPage from './pages/LandingPage';
 import Lobby from './pages/Lobby';
 import Connections from './pages/Connections';
+import UploadFile from './components/UploadFile';
 //TODO:Disable react dev tools here
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/connections" element={<Connections />} />
+        <Route path="/upload" element={<UploadFile />} />
         {/*protected routes*/}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRole={subscription.free} />}>
