@@ -4,13 +4,12 @@ import Login from './pages/Login';
 import UserOnBoarding from './pages/UserOnBoarding';
 import RequireAuth from './components/auth/RequireAuth';
 import { subscription } from './constants/constants';
-import UserList from './pages/UserList';
+// import UserList from './pages/UserList';
 import PersistLogin from './components/auth/PersistLogin';
 import OAuthController from './components/auth/OAuthController';
 import LandingPage from './pages/LandingPage';
 import Lobby from './pages/Lobby';
 import Connections from './pages/Connections';
-import UploadFile from './components/UploadFile';
 //TODO:Disable react dev tools here
 function App() {
   return (
@@ -21,13 +20,12 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<UserOnBoarding />} />
 
-        <Route path="/lobby" element={<Lobby />} />
         <Route path="/connections" element={<Connections />} />
-        <Route path="/upload" element={<UploadFile />} />
+
         {/*protected routes*/}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRole={subscription.free} />}>
-            <Route path="/users" element={<UserList />} />
+            <Route path="/lobby" element={<Lobby />} />
           </Route>
         </Route>
         <Route path="oauth/authorization" element={<OAuthController />} />

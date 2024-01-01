@@ -6,6 +6,7 @@ import GoogleLogo from '../assets/google.svg';
 import useAuth from '../hooks/useAuth';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from '../api/axios';
+import { AxiosResponse, AxiosError } from 'axios';
 interface IUser {
   user: string;
   password: string;
@@ -13,6 +14,10 @@ interface IUser {
 interface IFocus {
   user: boolean;
   password: boolean;
+}
+
+export interface ApiErrorResponse {
+  message: string;
 }
 
 const Login = () => {
@@ -30,7 +35,7 @@ const Login = () => {
     setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleFocus(e) {
+  function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
     setIsFocused((prev) => ({ ...prev, [e.target.name]: true }));
   }
   async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
@@ -46,7 +51,7 @@ const Login = () => {
     }
     try {
       //for setting up cookies we are using private method
-      const response = await axios.post(
+      const response: AxiosResponse = await axios.post(
         'auth/login',
         JSON.stringify({ userName, email, password: userData.password }),
         { withCredentials: true },
@@ -62,8 +67,12 @@ const Login = () => {
       navigate(fromLocation, { replace: true });
       //success send the user back to where they were
     } catch (e) {
-      setErrorMsg(e?.response?.data?.message);
-      if (!e?.response) {
+      const error = e as AxiosError<ApiErrorResponse>;
+      if (error.response) {
+        // Now TypeScript knows error.response exists
+        setErrorMsg(error.response.data.message);
+      } else {
+        // Handle the case where the error does not have a response (network error, etc.)
         setErrorMsg('Internal Server Error');
       }
     }

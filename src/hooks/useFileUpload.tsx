@@ -26,7 +26,7 @@ export default function useFileUpload(
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
   const axiosPrivate = useAxiosPrivate();
 
-  const uploadFile = useCallback((file: File | null | string) => {
+  const uploadFile = useCallback((file: File) => {
     if (file) {
       const { key, content_type } = getKeyAndContentType(file, prefix);
       axiosPrivate.post(`${url}`, { key, content_type }).then((response) => {
@@ -37,6 +37,7 @@ export default function useFileUpload(
         if (signedUrl) {
           console.log('uploading');
           setUploading(true);
+
           uploadFileToSignedUrl(
             signedUrl,
             file,

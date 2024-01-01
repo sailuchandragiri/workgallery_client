@@ -4,12 +4,15 @@ export async function uploadFileToSignedUrl(
   signedUrl: string,
   file: File,
   contentType: string,
-  onProgress: () => number,
+  onProgress: (progress: ProgressEvent) => void,
   onComplete: (response: AxiosResponse) => void,
 ) {
   console.log(signedUrl);
   axios
     .put(signedUrl, file, {
+      /*
+      // @ts-expect-error :progress Event need to fix */
+
       onUploadProgress: onProgress,
       headers: {
         'Content-Type': contentType,

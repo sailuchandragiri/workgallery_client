@@ -26,11 +26,13 @@ const PersistLogin = () => {
     return () => {
       isMounted = false;
     };
+    //eslint-disable-next-line
   }, []);
   //TODO:Remove it in production
   useEffect(() => {
     console.log('isLoading', isLoading);
     console.log('accessToken', JSON.stringify(auth?.accessToken));
+    //eslint-disable-next-line
   }, [isLoading]);
   //if we don't set the persist then show outlet and rest is handled by require Auth component
   return <>{!persist ? <Outlet /> : isLoading ? <p>Loading</p> : <Outlet />}</>;

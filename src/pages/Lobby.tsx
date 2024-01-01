@@ -12,7 +12,10 @@ const Lobby = () => {
   console.log(uploadProgress);
   console.log(uploading);
   useEffect(() => {
-    uploadFile(file);
+    if (file) {
+      // Check if file is not null
+      uploadFile(file);
+    }
     // eslint-disable-next-line
   }, [file]);
   return (
@@ -20,7 +23,13 @@ const Lobby = () => {
       <aside>Aside</aside>
       <div>
         <img src={uploadFileUrl} alt={'image'} />
-        <input type="file" name="file" onChange={(e) => setFile(e.target.files[0])} />
+        <input
+          type="file"
+          name="file"
+          onChange={(e) => {
+            if (e.target.files) setFile(e.target.files[0]);
+          }}
+        />
       </div>
       <aside>Aside</aside>
     </section>

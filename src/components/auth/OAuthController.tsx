@@ -34,6 +34,7 @@ const OAuthController = () => {
       isMounted = false;
       controller.abort();
     };
+    //eslint-disable-next-line
   }, []);
   return <div>Loading</div>;
 };

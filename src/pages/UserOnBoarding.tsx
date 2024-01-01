@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
+import { ApiErrorResponse } from './Login';
+import { AxiosResponse, AxiosError } from 'axios';
 import GitHubLogo from '../assets/github.svg';
 import GoogleLogo from '../assets/google.svg';
 import OnBoardingFlow from '../components/OnBoardingFlow';
 import { USER_REGEX } from '../constants/constants';
 import { getGoogleUrl } from '../utils/getGoogleUrl';
 import { getGitHubUrl } from '../utils/getGithubUrl';
-import { useNavigate, useLocation } from 'react-router-dom';
-const CollectUserName = ({ onNext }) => {
+import { useLocation } from 'react-router-dom';
+interface IStepData {
+  userName: string;
+}
+interface IUserData {
+  userName: string;
+}
+interface CollectEmailAndPasswordProps {
+  userData: IUserData;
+}
+
+interface CollectUserNameProps {
+  onNext: (stepData: IStepData) => void;
+}
+
+const CollectUserName: React.FC<CollectUserNameProps> = ({ onNext }) => {
   const [userName, setUserName] = useState('');
   const [validUserName, setValidUserName] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const location = useLocation();
   const fromLocation = location.state?.from?.pathname || '/';
   useEffect(() => {
@@ -22,17 +38,20 @@ const CollectUserName = ({ onNext }) => {
 
     async function checkUserNameAvailability(userName: string) {
       try {
-        const result = await axios.get(`/auth/check-username/${userName}`, {
+        const result: AxiosResponse = await axios.get(`/auth/check-username/${userName}`, {
           signal: controller.signal,
         });
         isMounted && setErrorMsg(result.data.message);
         setValidUserName(result.data.availability);
       } catch (err) {
-        if (!err?.response) {
-          setErrorMsg('No server response');
+        const error = err as AxiosError<ApiErrorResponse>;
+        if (error.response) {
+          // Now TypeScript knows error.response exists
+          setErrorMsg(error.response.data.message);
+        } else {
+          // Handle the case where the error does not have a response (network error, etc.)
+          setErrorMsg('Internal Server Error');
         }
-        console.log(err, 'error');
-        setErrorMsg('something went wrong');
       }
     }
     if (USER_REGEX.test(userName)) {
@@ -113,7 +132,7 @@ const CollectUserName = ({ onNext }) => {
   );
 };
 
-export const CollectEmailAndPassword = ({ userData }) => {
+export const CollectEmailAndPassword: React.FC<CollectEmailAndPasswordProps> = ({ userData }) => {
   async function onSubmitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -137,9 +156,9 @@ export const CollectEmailAndPassword = ({ userData }) => {
 };
 
 const UserOnBoarding = () => {
-  const [userData, setUserData] = useState({ userName: '' });
+  const [userData, setUserData] = useState<IUserData>({ userName: '' });
   const [currentIndex, setCurrentIndex] = useState(0);
-  function onNext(stepData) {
+  function onNext(stepData: IStepData) {
     setUserData({ ...userData, ...stepData });
     if (currentIndex < 1) {
       setCurrentIndex((prev) => prev + 1);
@@ -147,6 +166,7 @@ const UserOnBoarding = () => {
   }
   return (
     <OnBoardingFlow currentIndex={currentIndex} onNext={onNext}>
+      {/*// @ts-expect-error:already cloned*/}
       <CollectUserName />
       <CollectEmailAndPassword userData={userData} />
     </OnBoardingFlow>
