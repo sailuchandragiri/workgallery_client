@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import FriendsSinging from '../assets/FiendsSinging.svg';
 import ShareFriends from '../assets/ShareFriends.svg';
 import UploadToCloud from '../assets/UploadTCloud.png';
@@ -34,6 +34,7 @@ import Line from '../assets/Horizontal_1.svg';
 import axios from '../api/axios';
 
 const LandingPage = () => {
+  const waitListButtonRef = useRef(null);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const TitleImages = [Connect, Create, Elevate];
@@ -95,9 +96,16 @@ const LandingPage = () => {
       'radial-gradient(50% 50% at 50% 50%, rgba(2, 107, 246, 0.50) 0%, rgba(2, 107, 246, 0.00) 100%)',
     filter: 'blur(0.2px)',
   };
+  function scrollToWaitList() {
+    if (waitListButtonRef.current) {
+      /*
+      // @ts-expect-error :progress Event need to fix */
+      waitListButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
   return (
     <div className="bg-[#040102] pt-12 text-white font-gilroy text-center md:text-left">
-      <h1 className="text-xl font-normal mx-6 md:mx-20">workgallery</h1>
+      {/* <h1 className="text-[4rem] font-normal text-center mx-6 md:mx-20">workgallery</h1> */}
       {/* Desktop and tab view of connect */}
       <div className="hidden md:block mx-6 md:mx-20">
         <div className="mt-14 flex justify-between ...">
@@ -154,19 +162,27 @@ const LandingPage = () => {
               Craft Your Profile with WorkGallery, Elevate Your Presence, and <br />
               Connect with Like-minded Creatives
             </p>
-            <div className="flex justify-center mt-20">
+            <div className="flex justify-center items-center mt-20">
               <div className="flex justify-center items-center">
                 {isButtonClicked ? (
-                  <form onSubmit={handleSubmit}>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex justify-center items-center flex-col "
+                  >
                     <input
                       type="email"
                       placeholder="enter email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        if (e.target.value.length === 0) {
+                          handleClick();
+                        }
+                        setEmail(e.target.value);
+                      }}
                       value={email}
-                      className="border-4  border-gray-700 rounded-full py-3 px-4 bg-transparent  font-thin focus:outline-none w-[70%]"
+                      className="border-4 w-[530px]   text-center border-gray-700 rounded-full py-3 px-4 bg-transparent  font-thin focus:outline-none "
                     />
                     <button
-                      className={`w-[530px] my-5 font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
+                      className={`w-[530px]  text-center my-5 font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
                     >
                       Join Wait list
                     </button>
@@ -174,6 +190,7 @@ const LandingPage = () => {
                 ) : (
                   <button
                     onClick={handleClick}
+                    ref={waitListButtonRef}
                     className={`w-[530px] font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
                   >
                     {buttonText}
@@ -518,7 +535,10 @@ const LandingPage = () => {
         </div>
         <div className="flex justify-center mt-6">
           <div className="flex justify-center items-center">
-            <button className="w-[380px] md:w-[530px] text-sm md:text-xl font-gilroy shadow-sm shadow-teal-400 rounded-full border-2 border-accent bg-accent py-3 px-12">
+            <button
+              onClick={scrollToWaitList}
+              className="w-[380px] md:w-[530px] text-sm md:text-xl font-gilroy shadow-sm shadow-teal-400 rounded-full border-2 border-accent bg-accent py-3 px-12"
+            >
               Join the waitlist
             </button>
           </div>
