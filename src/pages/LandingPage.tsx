@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FriendsSinging from '../assets/FiendsSinging.svg';
 import ShareFriends from '../assets/ShareFriends.svg';
 import UploadToCloud from '../assets/UploadTCloud.png';
@@ -75,12 +75,13 @@ const LandingPage = () => {
     filter: 'blur(0.2px)',
   };
   return (
-    <div className="bg-[#040102] pt-12 text-white font-gilroy text-center md:text-left">
+    <div className="bg-[#040102] pt-12 text-white font-poppins text-center md:text-left">
+      <header className="text-xl font-normal mx-6 md:mx-20">workgallary</header>
       {/* Desktop and tab view of connect */}
       <div className="hidden md:block mx-6 md:mx-20">
         <div className="mt-14 flex justify-between ...">
           <div className="flex flex-col gap-48">
-            <div className="w-[250px] h-[150px] ">
+            <div className="w-[150px] h-[150px] ">
               <div className="relative overflow-hidden h-[150px] flex justify-center ...">
                 {LeftTopImages.map((image, index) => (
                   <img
@@ -96,7 +97,7 @@ const LandingPage = () => {
                 ))}
               </div>
             </div>
-            <div className="w-[250px] h-[150px] ">
+            <div className="w-[150px] h-[150px] ">
               <div className="relative overflow-hidden h-[150px] flex justify-center ...">
                 {LeftBottomImages.map((image, index) => (
                   <img
@@ -128,14 +129,14 @@ const LandingPage = () => {
                 />
               ))}
             </div>
-            <div className="font-gilroy mt-10 text-base text-subtitle font-normal text-center leading-8">
+            <div className="font-poppins mt-10 text-base text-subtitle font-normal text-center leading-8">
               Craft Your Profile with WorkGallery, Elevate Your Presence, and <br />
               Connect with Like-minded Creatives
             </div>
             <div className="flex justify-center mt-20">
               <div className="flex justify-center items-center">
                 <button
-                  className={`w-[530px] font-gilroy text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
+                  className={`w-[530px] font-poppins text-xl font-normal rounded-full shadow border-2 p-2 py-4 ${colors[currentImageIndex]} ${borderColors[currentImageIndex]} ${shadowColors[currentImageIndex]} text-white`}
                 >
                   Join the waitlist
                 </button>
@@ -143,7 +144,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="flex flex-col gap-48 pt-28">
-            <div className="w-[250px] h-[150px] ">
+            <div className="w-[150px] h-[150px] ">
               <div className="relative overflow-hidden h-[150px] flex justify-center ...">
                 {RightTopImages.map((image, index) => (
                   <img
@@ -230,7 +231,7 @@ const LandingPage = () => {
                 />
               ))}
             </div>
-            <div className="font-gilroy text-sm text-subtitle text-center leading-6">
+            <div className="font-poppins text-sm text-subtitle text-center leading-6">
               Craft Your Profile with WorkGallery, Elevate Your Presence, and <br />
               Connect with Like-minded Creatives
             </div>
@@ -271,7 +272,7 @@ const LandingPage = () => {
           </div>
           <div className="flex justify-center mt-10">
             <div className="flex justify-center items-center">
-              <button className=" w-[380px] py-3 px-6 text-sm font-gilroy shadow-sm shadow-teal-400 rounded-full border-2 border-btnborder bg-btnbackground">
+              <button className=" w-[380px] py-3 px-6 text-sm font-poppins shadow-sm shadow-teal-400 rounded-full border-2 border-btnborder bg-btnbackground">
                 Join the waitlist
               </button>
             </div>
@@ -281,10 +282,10 @@ const LandingPage = () => {
 
       {/* Old Portfolio screen */}
       <div
-        className="mt-10 mx-6 md:mx-10 flex flex-col gap-2 md:gap-3 font-gilroy justify-center p-6 md:p-6 md:mt-16 bg-cover bg-center bg-no-repeat"
+        className="mt-10 mx-6 md:mx-10 flex flex-col gap-2 md:gap-3 font-poppins justify-center p-6 md:p-6 md:mt-16 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${Desktop_12})` }}
       >
-        <div className="text-lg md:text-4xl font-bold text-center font-gilroy">
+        <div className="text-lg md:text-4xl font-bold text-center font-poppins">
           Say <strong className="text-fontblue">Goodbye to the Old Style</strong> of <br /> Editing
           Portfolio
         </div>
@@ -311,7 +312,7 @@ const LandingPage = () => {
         style={{ backgroundImage: `url(${NetworkBackground})` }}
       >
         <div className="flex gap-3 flex-col justify-center ...">
-          <div className="text-xl font-semibold text-center font-gilroy">
+          <div className="text-xl font-semibold text-center font-poppins">
             <strong className="text-fontblue">Workgallery AI: </strong> Your Secret <br /> Weapon
             for a Portfolio that Wows
           </div>
@@ -371,11 +372,11 @@ const LandingPage = () => {
 
       {/* WorkAI screen for Desktop and Tab View */}
       <div
-        className="mt-14  p-8 pt-44 hidden md:block font-gilroy bg-cover bg-center bg-no-repeat"
+        className="mt-14  p-8 pt-44 hidden md:block font-poppins bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${NetworkBackground})` }}
       >
         <div className="flex gap-6 flex-col justify-center ...">
-          <div className="text-2xl md:text-4xl font-bold text-center font-gilroy">
+          <div className="text-2xl md:text-4xl font-bold text-center font-poppins">
             <strong className="text-fontblue">Workgallery AI: </strong> Your Secret <br /> Weapon
             for a Portfolio that Wows
           </div>
@@ -422,7 +423,7 @@ const LandingPage = () => {
                 <img src={Format} alt="Send" />
               </div>
               <div className="font-normal text-xl leading-8">
-                Save time by over viewing <br /> the snippets with AI
+                Save time by overviewing <br /> the snippets with AI
               </div>
               <div className="font-normal text-sm text-pf_subtitle">
                 Stand out in seconds. AI showcases your <br /> skills and experience in bite-sized{' '}
@@ -436,7 +437,7 @@ const LandingPage = () => {
       {/* Network screen for Mobile view */}
       <div className="mt-14 mx-6 md:mx-10 block md:hidden">
         <div className="flex gap-4 flex-col justify-center ...">
-          <div className="text-xl font-semibold text-center font-gilroy">
+          <div className="text-xl font-semibold text-center font-poppins">
             <strong className="text-fontblue">Workgallery AI: </strong> Your Secret <br /> Weapon
             for a Portfolio that Wows
           </div>
@@ -453,9 +454,9 @@ const LandingPage = () => {
       </div>
 
       {/* Network screen for Desktop and Tab View */}
-      <div className="mt-14 mx-6 md:mx-10 p-8 hidden md:block font-gilroy">
+      <div className="mt-14 mx-6 md:mx-10 p-8 hidden md:block font-poppins">
         <div className="flex gap-6 flex-col justify-center ...">
-          <div className="text-4xl font-bold text-center font-gilroy">
+          <div className="text-4xl font-bold text-center font-poppins">
             <strong className="text-fontblue">Networking Just Got Better </strong> with <br /> The
             Work Gallery
           </div>
@@ -473,12 +474,12 @@ const LandingPage = () => {
         className="mt-44 h-[580px] flex justify-center flex-col bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${JoinBG})` }}
       >
-        <div className="text-center text-xl md:text-4xl font-semibold md:font-bold  font-gilroy">
+        <div className="text-center text-xl md:text-4xl font-semibold md:font-bold  font-poppins">
           Connect Create Elevate
         </div>
         <div className="flex justify-center mt-6">
           <div className="flex justify-center items-center">
-            <button className="w-[380px] md:w-[530px] text-sm md:text-xl font-gilroy shadow-sm shadow-teal-400 rounded-full border-2 border-btnborder bg-btnbackground py-3 px-12">
+            <button className="w-[380px] md:w-[530px] text-sm md:text-xl font-poppins shadow-sm shadow-teal-400 rounded-full border-2 border-btnborder bg-btnbackground py-3 px-12">
               Join the waitlist
             </button>
           </div>
@@ -486,7 +487,7 @@ const LandingPage = () => {
       </div>
 
       {/* Footer for desktop and tabview */}
-      <footer className="hidden md:block bg-[#131313] py-16 px-32 font-gilroy">
+      <footer className="hidden md:block bg-[#131313] py-16 px-32 font-poppins">
         <div className="flex flex-col gap-6 justify-center ...">
           <div className="flex justify-center gap-14 ...">
             <div>
@@ -513,7 +514,7 @@ const LandingPage = () => {
       </footer>
 
       {/* Footer for Mobile View */}
-      <footer className="block md:hidden bg-[#131313] py-12 px-10 font-gilroy">
+      <footer className="block md:hidden bg-[#131313] py-12 px-10 font-poppins">
         <div className="flex flex-col gap-6 justify-center ...">
           <div className="flex justify-center gap-10 ...">
             <div>
