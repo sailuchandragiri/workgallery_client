@@ -1,7 +1,8 @@
 export const navLinks = [
-  { label: 'Lobby', href: '/lobby' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Connections', href: '/connections' },
+  { label: 'Home', href: '/' },
+  { label: 'About us', href: '/about' },
+  { label: 'LinkedIn', href: 'http://www.linkedin.com' },
+  { label: 'Twitter', href: 'http://www.linkedin.com' },
 ];
 
 export const USER_REGEX = /^[a-z0-9-_]{4,23}$/;
