@@ -29,6 +29,7 @@ export default {
         'slate-gray': '#6D6D6D',
         'pale-blue': '#F5F6FF',
         'white-400': 'rgba(255, 255, 255, 0.80)',
+        'blue-500': '#026BF6',
         btnbackground: '#026BF6',
         btnborder: '#4285F4',
         fontblue: '#1A7DFF',

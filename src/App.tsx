@@ -1,3 +1,4 @@
+
 import Layout from "./components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
@@ -17,9 +18,7 @@ function App() {
         {/*public routes*/}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<UserOnBoarding />} />
-
         <Route path="/connections" element={<Connections />} />
-
         {/*protected routes*/}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRole={subscription.free} />}>
