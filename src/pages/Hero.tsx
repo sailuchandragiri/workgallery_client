@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import useRefreshToken from '../hooks/useRefreshToken';
+
 const Hero = () => {
   const [showInput, setShowInput] = useState(false);
-  const refresh = useRefreshToken();
+
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e.target);
@@ -25,12 +25,6 @@ const Hero = () => {
         onClick={() => setShowInput(!showInput)}
       >
         Join wait list
-      </button>
-      <button
-        className="mt-5 bg-black text-white py-4 px-28 text-lg rounded-full"
-        onClick={() => refresh()}
-      >
-        Refresh
       </button>
 
       {showInput && (
