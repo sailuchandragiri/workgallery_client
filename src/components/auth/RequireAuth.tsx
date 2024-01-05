@@ -1,6 +1,6 @@
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-import useAuth from '../../hooks/useAuth';
+import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { jwtDecode, JwtPayload } from "jwt-decode";
+import useAuth from "../../hooks/useAuth";
 interface RequireAuthProps {
   allowedRole: number;
 }
@@ -20,7 +20,7 @@ const RequireAuth: React.FC<RequireAuthProps> = ({ allowedRole }) => {
   ) : auth?.userName ? (
     <Navigate to="/unauthorized" state={{ from: location }} replace />
   ) : (
-    <Navigate to={'/login'} state={{ from: location }} replace />
+    <Navigate to={"/login"} state={{ from: location }} replace />
   );
 };
 

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../api/axios';
-import { ApiErrorResponse } from './Login';
-import { AxiosResponse, AxiosError } from 'axios';
-import GitHubLogo from '../assets/github.svg';
-import GoogleLogo from '../assets/google.svg';
-import OnBoardingFlow from '../components/OnBoardingFlow';
-import { USER_REGEX } from '../constants/constants';
-import { getGoogleUrl } from '../utils/getGoogleUrl';
-import { getGitHubUrl } from '../utils/getGithubUrl';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "../api/axios";
+import { ApiErrorResponse } from "./Login";
+import { AxiosResponse, AxiosError } from "axios";
+import GitHubLogo from "../assets/github.svg";
+import GoogleLogo from "../assets/google.svg";
+import OnBoardingFlow from "../components/OnBoardingFlow";
+import { USER_REGEX } from "../constants/constants";
+import { getGoogleUrl } from "../utils/getGoogleUrl";
+import { getGitHubUrl } from "../utils/getGithubUrl";
+import { useLocation } from "react-router-dom";
 interface IStepData {
   userName: string;
 }
@@ -24,15 +24,15 @@ interface CollectUserNameProps {
 }
 
 const CollectUserName: React.FC<CollectUserNameProps> = ({ onNext }) => {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const [validUserName, setValidUserName] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
   //const navigate = useNavigate();
   const location = useLocation();
-  const fromLocation = location.state?.from?.pathname || '/';
+  const fromLocation = location.state?.from?.pathname || "/";
   useEffect(() => {
     let isMounted = true;
-    setErrorMsg('');
+    setErrorMsg("");
     const controller = new AbortController();
     axios.defaults.timeout = 5000;
 
@@ -50,14 +50,14 @@ const CollectUserName: React.FC<CollectUserNameProps> = ({ onNext }) => {
           setErrorMsg(error.response.data.message);
         } else {
           // Handle the case where the error does not have a response (network error, etc.)
-          setErrorMsg('Internal Server Error');
+          setErrorMsg("Internal Server Error");
         }
       }
     }
     if (USER_REGEX.test(userName)) {
       checkUserNameAvailability(userName);
     } else {
-      setErrorMsg('username must match criteria');
+      setErrorMsg("username must match criteria");
     }
     return () => {
       isMounted = false;
@@ -107,7 +107,7 @@ const CollectUserName: React.FC<CollectUserNameProps> = ({ onNext }) => {
             className="pr-2 border-spacing-1"
             src={GoogleLogo}
             alt=""
-            style={{ height: '2rem' }}
+            style={{ height: "2rem" }}
           />
           Login with Google
         </a>
@@ -118,11 +118,11 @@ const CollectUserName: React.FC<CollectUserNameProps> = ({ onNext }) => {
           data-mdb-ripple="true"
           data-mdb-ripple-color="light"
         >
-          <img className="pr-2" src={GitHubLogo} alt="" style={{ height: '2.2rem' }} />
+          <img className="pr-2" src={GitHubLogo} alt="" style={{ height: "2.2rem" }} />
           Login with GitHub
         </a>
         <p className="text-center py-2">
-          Already have an account ?{' '}
+          Already have an account ?{" "}
           <a href="/login" className="text-accent underline">
             login here
           </a>
@@ -137,12 +137,12 @@ export const CollectEmailAndPassword: React.FC<CollectEmailAndPasswordProps> = (
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const User = {
-      email: formData.get('email'),
-      password: formData.get('password'),
+      email: formData.get("email"),
+      password: formData.get("password"),
       userName: userData.userName,
     };
     await axios.post(
-      '/auth/register',
+      "/auth/register",
       JSON.stringify({ userName: User.userName, email: User.email, password: User.password }),
     );
   }
@@ -156,7 +156,7 @@ export const CollectEmailAndPassword: React.FC<CollectEmailAndPasswordProps> = (
 };
 
 const UserOnBoarding = () => {
-  const [userData, setUserData] = useState<IUserData>({ userName: '' });
+  const [userData, setUserData] = useState<IUserData>({ userName: "" });
   const [currentIndex, setCurrentIndex] = useState(0);
   function onNext(stepData: IStepData) {
     setUserData({ ...userData, ...stepData });

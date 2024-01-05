@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
 export async function uploadFileToSignedUrl(
   signedUrl: string,
@@ -15,7 +15,7 @@ export async function uploadFileToSignedUrl(
 
       onUploadProgress: onProgress,
       headers: {
-        'Content-Type': contentType,
+        "Content-Type": contentType,
       },
     })
     .then((response) => {

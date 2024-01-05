@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import useFileUpload from '../hooks/useFileUpload';
+import { useEffect, useState } from "react";
+import useFileUpload from "../hooks/useFileUpload";
 const Lobby = () => {
   const [file, setFile] = useState<null | File>(null);
-  const [uploadFileUrl, setUpdatedFileURL] = useState<string>('');
-  const url = '/posts';
-  const prefix = '/images';
+  const [uploadFileUrl, setUpdatedFileURL] = useState<string>("");
+  const url = "/posts";
+  const prefix = "/images";
   const onChange = (fileLink: string) => {
     setUpdatedFileURL(fileLink);
   };
@@ -22,7 +22,7 @@ const Lobby = () => {
     <section className="grid-container">
       <aside>Aside</aside>
       <div>
-        <img src={uploadFileUrl} alt={'image'} />
+        <img src={uploadFileUrl} alt={"image"} />
         <input
           type="file"
           name="file"

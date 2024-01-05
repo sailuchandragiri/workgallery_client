@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from "react";
 //eslint-disable-next-line
 export const initialAuth = {
   accessToken: null,
@@ -29,7 +29,7 @@ interface AuthProviderProps {
 }
 
 function getPersistValue(): boolean {
-  const storedPersistValue = localStorage.getItem('persist');
+  const storedPersistValue = localStorage.getItem("persist");
   return storedPersistValue ? JSON.parse(storedPersistValue) : false;
 }
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {

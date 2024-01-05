@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { axiosPrivate } from '../../api/axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { axiosPrivate } from "../../api/axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
-import useAuth from '../../hooks/useAuth';
+import useAuth from "../../hooks/useAuth";
 const OAuthController = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const fromLocation = location.state?.from?.pathname || '/';
+  const fromLocation = location.state?.from?.pathname || "/";
   const { setAuth } = useAuth();
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
     (async () => {
       try {
-        const response = await axiosPrivate.get('/auth/oauth/userInfo');
+        const response = await axiosPrivate.get("/auth/oauth/userInfo");
         isMounted && console.log(response.data);
         const accessToken: string = response?.data?.accessToken;
         const userName: string = response?.data?.userName;
@@ -25,7 +25,7 @@ const OAuthController = () => {
         }
       } catch (err) {
         console.log(err);
-        navigate('/login', { state: { from: location }, replace: true }); //navigating to this same page
+        navigate("/login", { state: { from: location }, replace: true }); //navigating to this same page
         // if user needs to be logged again
       }
     })();

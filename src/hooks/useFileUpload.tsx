@@ -1,9 +1,9 @@
-import { useCallback, useState } from 'react';
-import { uploadFileToSignedUrl } from '../api/fileUpload';
-import useAxiosPrivate from './useAxiosPrivate';
+import { useCallback, useState } from "react";
+import { uploadFileToSignedUrl } from "../api/fileUpload";
+import useAxiosPrivate from "./useAxiosPrivate";
 
-function getKeyAndContentType(file: File, prefix = 'documents') {
-  const [fileName, extension] = file.name.split('.');
+function getKeyAndContentType(file: File, prefix = "documents") {
+  const [fileName, extension] = file.name.split(".");
   // to generate unique key every time
   const key = prefix + `/${fileName}-${new Date().valueOf()}.${extension}`;
 
@@ -35,7 +35,7 @@ export default function useFileUpload(
         const fileLink = response?.data?.data?.fileLink;
         console.log(signedUrl);
         if (signedUrl) {
-          console.log('uploading');
+          console.log("uploading");
           setUploading(true);
 
           uploadFileToSignedUrl(

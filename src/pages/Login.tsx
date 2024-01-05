@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import GitHubLogo from '../assets/github.svg';
-import { getGoogleUrl } from '../utils/getGoogleUrl';
-import { getGitHubUrl } from '../utils/getGithubUrl';
-import GoogleLogo from '../assets/google.svg';
-import useAuth from '../hooks/useAuth';
-import { useNavigate, useLocation } from 'react-router-dom';
-import axios from '../api/axios';
-import { AxiosResponse, AxiosError } from 'axios';
+import React, { useEffect, useState } from "react";
+import GitHubLogo from "../assets/github.svg";
+import { getGoogleUrl } from "../utils/getGoogleUrl";
+import { getGitHubUrl } from "../utils/getGithubUrl";
+import GoogleLogo from "../assets/google.svg";
+import useAuth from "../hooks/useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "../api/axios";
+import { AxiosResponse, AxiosError } from "axios";
 interface IUser {
   user: string;
   password: string;
@@ -22,13 +22,13 @@ export interface ApiErrorResponse {
 
 const Login = () => {
   const { setAuth, persist, setPersist } = useAuth();
-  const [userData, setUserData] = useState<IUser>({ user: '', password: '' });
-  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [userData, setUserData] = useState<IUser>({ user: "", password: "" });
+  const [errorMsg, setErrorMsg] = useState<string>("");
   const [isFocused, setIsFocused] = useState<IFocus>({ user: false, password: false });
 
   const navigate = useNavigate();
   const location = useLocation();
-  const fromLocation = location.state?.from?.pathname || '/';
+  const fromLocation = location.state?.from?.pathname || "/";
 
   //getting the  location of user before they came to login
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -42,7 +42,7 @@ const Login = () => {
     e.preventDefault();
     let userName: string | null;
     let email: string | null;
-    if (userData.user.includes('@')) {
+    if (userData.user.includes("@")) {
       email = userData.user;
       userName = null;
     } else {
@@ -52,7 +52,7 @@ const Login = () => {
     try {
       //for setting up cookies we are using private method
       const response: AxiosResponse = await axios.post(
-        'auth/login',
+        "auth/login",
         JSON.stringify({ userName, email, password: userData.password }),
         { withCredentials: true },
       );
@@ -62,7 +62,7 @@ const Login = () => {
       // const id: string = response?.data?.id;
       const email_r: string = response?.data?.email;
       setAuth({ accessToken: accessToken, userName: name, email: email_r });
-      setUserData({ user: '', password: '' });
+      setUserData({ user: "", password: "" });
 
       navigate(fromLocation, { replace: true });
       //success send the user back to where they were
@@ -73,7 +73,7 @@ const Login = () => {
         setErrorMsg(error.response.data.message);
       } else {
         // Handle the case where the error does not have a response (network error, etc.)
-        setErrorMsg('Internal Server Error');
+        setErrorMsg("Internal Server Error");
       }
     }
   }
@@ -83,8 +83,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('persist', JSON.stringify(persist));
-    console.log('persist', persist);
+    localStorage.setItem("persist", JSON.stringify(persist));
+    console.log("persist", persist);
   }, [persist]);
   return (
     <section>
@@ -95,7 +95,7 @@ const Login = () => {
           <div className="relative py-3">
             <label
               className={`absolute  text-gray-500 font-thin transition-all ${
-                isFocused?.user ? 'transform scale-75 bottom-7 -left-4' : ''
+                isFocused?.user ? "transform scale-75 bottom-7 -left-4" : ""
               }`}
               htmlFor="user"
             >
@@ -117,7 +117,7 @@ const Login = () => {
           <div className="relative py-3">
             <label
               className={`absolute  text-gray-500 font-thin transition-all ${
-                isFocused.password ? 'transform scale-75 bottom-7 -left-2' : ''
+                isFocused.password ? "transform scale-75 bottom-7 -left-2" : ""
               }`}
               htmlFor="pwd"
             >
@@ -159,7 +159,7 @@ const Login = () => {
             className="pr-2 border-spacing-1"
             src={GoogleLogo}
             alt=""
-            style={{ height: '2rem' }}
+            style={{ height: "2rem" }}
           />
           Login with Google
         </a>
@@ -170,11 +170,11 @@ const Login = () => {
           data-mdb-ripple="true"
           data-mdb-ripple-color="light"
         >
-          <img className="pr-2" src={GitHubLogo} alt="" style={{ height: '2.2rem' }} />
+          <img className="pr-2" src={GitHubLogo} alt="" style={{ height: "2.2rem" }} />
           Login with GitHub
         </a>
         <p className="text-center py-4">
-          Don't have an account ?{' '}
+          Don't have an account ?{" "}
           <a href={`/register`} className="font-bold  text-accent underline">
             Register Here
           </a>

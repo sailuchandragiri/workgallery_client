@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import { navLinks } from '../constants/constants';
-import useAuth from '../hooks/useAuth';
-import useLogout from '../hooks/useLogout';
+import { NavLink } from "react-router-dom";
+import { navLinks } from "../constants/constants";
+import useAuth from "../hooks/useAuth";
+import useLogout from "../hooks/useLogout";
 
 const Header = () => {
   const { auth } = useAuth();
