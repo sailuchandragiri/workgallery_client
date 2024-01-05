@@ -1,6 +1,6 @@
-import axios from '../api/axios';
-import useAuth from './useAuth';
-import { initialAuth } from '../context/AuthProvider';
+import axios from "../api/axios";
+import useAuth from "./useAuth";
+import { initialAuth } from "../context/AuthProvider";
 const useLogout = () => {
   const { setAuth } = useAuth();
 
@@ -9,7 +9,7 @@ const useLogout = () => {
     setAuth(initialAuth);
 
     try {
-      await axios.get('/auth/logout', { withCredentials: true });
+      await axios.get("/auth/logout", { withCredentials: true });
     } catch (err) {
       console.error(err);
     }

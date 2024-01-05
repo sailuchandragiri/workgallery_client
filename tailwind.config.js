@@ -24,6 +24,7 @@ export default {
       colors: {
         primary: '#E5E7EB',
         black: '#131313',
+        accent: '#026BF6',
         'coral-red': '#FF6452',
         'slate-gray': '#6D6D6D',
         'pale-blue': '#F5F6FF',

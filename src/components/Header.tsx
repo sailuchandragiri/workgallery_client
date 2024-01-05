@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import { navLinks } from '../constants/constants';
-import useAuth from '../hooks/useAuth';
-import useLogout from '../hooks/useLogout';
+import { NavLink } from "react-router-dom";
+import { navLinks } from "../constants/constants";
+import useAuth from "../hooks/useAuth";
+import useLogout from "../hooks/useLogout";
 
 const Header = () => {
   const { auth } = useAuth();
@@ -9,10 +9,10 @@ const Header = () => {
   return (
     <header className="py-6">
       <div className="flex items-center justify-between">
-        <NavLink to="/" className="text-lg font-bold inline-block justify-self-start	 ">
+        <NavLink to="/" className="text-lg font-bold inline-block justify-self-start">
           The Work Gallery
         </NavLink>
-        <ul className="flex gap-3   rounded-lg items-center justify-center  justify-self-center	">
+        <ul className="flex gap-3   rounded-lg items-center justify-center  justify-self-center">
           {navLinks.map((link) => (
             <li key={link.label} className="">
               <NavLink
