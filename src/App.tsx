@@ -7,7 +7,6 @@ import { subscription } from './constants/constants';
 import UserList from './pages/UserList';
 import PersistLogin from './components/auth/PersistLogin';
 import OAuthController from './components/auth/OAuthController';
-import LandingPage from './pages/LandingPage';
 import Lobby from './pages/Lobby';
 import Connections from './pages/Connections';
 //TODO:Disable react dev tools here
@@ -18,7 +17,7 @@ function App() {
         {/*public routes*/}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<UserOnBoarding />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Lobby />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/connections" element={<Connections />} />
         {/*protected routes*/}
