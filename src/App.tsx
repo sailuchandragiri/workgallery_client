@@ -9,6 +9,8 @@ import PersistLogin from './components/auth/PersistLogin';
 import OAuthController from './components/auth/OAuthController';
 import Lobby from './pages/Lobby';
 import Connections from './pages/Connections';
+import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
 //TODO:Disable react dev tools here
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         {/*public routes*/}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<UserOnBoarding />} />
-        <Route path="/" element={<Lobby />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/gallery" element={<ProfilePage />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/connections" element={<Connections />} />
         {/*protected routes*/}

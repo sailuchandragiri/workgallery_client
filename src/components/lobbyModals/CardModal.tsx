@@ -13,6 +13,8 @@ interface ParentComponentProps {
   imgUrl: string;
   textContent: string;
   isGroup: boolean;
+  isWidth: string;
+  isMobile: boolean;
 }
 
 const CardModal: React.FC<ParentComponentProps> = ({
@@ -21,13 +23,21 @@ const CardModal: React.FC<ParentComponentProps> = ({
   imgUrl,
   textContent,
   isGroup,
+  isWidth,
+  isMobile,
 }) => {
   const [enableEdit, setEnableEdit] = useState(false);
 
   return (
-    <Modal status={groupModalStatus} onButtonClick={onChildButtonClick} isGroup={isGroup}>
+    <Modal
+      status={groupModalStatus}
+      onButtonClick={onChildButtonClick}
+      isGroup={isGroup}
+      isWidth={isWidth}
+      isMobile={isMobile}
+    >
       <div className="p-4 flex font-montserrat flex-col justify-between gap-6 ...">
-        <div className="flex justify-center gap-6 ...">
+        <div className="flex justify-center gap-2 md:gap-6 ...">
           <button
             onClick={() => setEnableEdit(false)}
             className={`text-sm px-5 py-3 rounded-full font-semibold flex justify-between gap-2 ...
@@ -41,7 +51,7 @@ const CardModal: React.FC<ParentComponentProps> = ({
             Preview
           </button>
           <button
-            className={`py-3 px-10 text-sm font-semibold rounded-full flex justify-between gap-2 ... 
+            className={`py-3 px-6 md:px-10 text-sm font-semibold rounded-full flex justify-between gap-2 ... 
               ${enableEdit ? ' text-white bg-black ' : ''}`}
             onClick={() => setEnableEdit(true)}
           >
@@ -84,11 +94,11 @@ const CardModal: React.FC<ParentComponentProps> = ({
           ) : (
             <div className="flex justify-between ...">
               <p className="flex text-sm font-medium text-zinc-800 w-[80%]">
-                <img src={FileIcon} alt="File_Icon" className="mr-2" /> Show profile in public
+                <img src={FileIcon} alt="File_Icon" className="mr-2" /> Public
               </p>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" value="" className="sr-only peer" />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
               </label>
             </div>
           )}

@@ -94,11 +94,11 @@ const Lobby = () => {
   };
 
   const handleChangeWorkSpaceModal = () => {
-    setEnableWorkSpaceModal(false);
+    setEnableWorkSpaceModal((prev) => !prev);
   };
 
   const handleChangeGroupModal = () => {
-    setEnableGroupModal(false);
+    setEnableGroupModal((prev) => !prev);
   };
 
   const LobbyImages = [
@@ -114,29 +114,40 @@ const Lobby = () => {
 
   return (
     <>
-      {enableGroupModal && (
-        <CreateGroupModal
-          groupModalStatus={enableGroupModal}
-          onChildButtonClick={handleChangeGroupModal}
-          isGroup={false}
-        />
-      )}
+      <div onClick={handleChangeGroupModal}>
+        {enableGroupModal && (
+          <CreateGroupModal
+            groupModalStatus={enableGroupModal}
+            onChildButtonClick={handleChangeGroupModal}
+            isGroup={false}
+            isWidth="xl"
+            isMobile={false}
+            isMenu={false}
+          />
+        )}
+      </div>
       {/* {enableGroupModal && (
         <AddGroupModal
           groupModalStatus={enableGroupModal}
           onChildButtonClick={handleChangeGroupModal}
           isGroup={true}
+           isWidth="3xl"
+           isMobile={false}
         />
       )} */}
-      {enableWorkSpaceModal && (
-        <AddWorkSpaceModal
-          groupModalStatus={enableWorkSpaceModal}
-          onChildButtonClick={handleChangeWorkSpaceModal}
-          isGroup={false}
-        />
-      )}
-      <section className="grid-container font-montserrat bg-zinc-100 px-6 py-6">
-        <aside className="border-r-2 p-4">
+      <div onClick={handleChangeWorkSpaceModal}>
+        {enableWorkSpaceModal && (
+          <AddWorkSpaceModal
+            groupModalStatus={enableWorkSpaceModal}
+            onChildButtonClick={handleChangeWorkSpaceModal}
+            isGroup={false}
+            isWidth="xl"
+            isMobile={false}
+          />
+        )}
+      </div>
+      <section className="grid-container-mobile md:grid-container font-montserrat bg-zinc-100 px-3 md:px-6 py-6">
+        <aside className="hidden md:block border-r-2 p-4">
           <div className="bg-white p-4 rounded-2xl h-[100%] flex flex-col ...">
             <DragAndDrop
               buttonLabel="Upload or Drag and Drop"
@@ -152,7 +163,7 @@ const Lobby = () => {
                     onClick={() => toggleSection(section.label)}
                   >
                     <p className="text-neutral-600"> {section.label}</p>
-                    <img onClick={() => setEnableGroupModal(true)} src={Plus} alt="Plus_Icon" />
+                    <img onClick={handleChangeGroupModal} src={Plus} alt="Plus_Icon" />
                   </div>
                   {activeSections.includes(section.label) && (
                     <div>
@@ -183,46 +194,48 @@ const Lobby = () => {
             </nav>
           </div>
         </aside>
-        <div className="pl-4 flex flex-col gap-8 justify-between ...">
+        <div className="md:pl-4 flex flex-col gap-8 justify-between ...">
           {LobbyImages.length > 0 ? (
             <>
-              <div className="flex justify-between ...">
-                <div className="w-[60%]">
-                  <Search
-                    placeholder="Search files..."
-                    onChange={handleSearchChange}
-                    containerStyle={{
-                      backgroundColor: 'white',
-                      borderRadius: '4rem',
-                      border: 'none',
-                      width: '',
-                    }}
-                    inputStyle={{
-                      border: 'none',
-                      fontFamily: 'montserrat',
-                      fontWeight: '600',
-                      fontSize: '14px',
-                      outline: 'none',
-                      color: '#9CA3AF',
-                      width: '60%',
-                      marginRight: '30%',
-                    }}
-                  />
-                </div>
-                <div className="flex justify-between pt-4 gap-3 ...">
-                  <div>
-                    <img
-                      onClick={() => handleChangeGrid(true)}
-                      src={gridOn ? GridOn : Grid}
-                      alt="Grid_Icon"
+              <div className="hidden md:block">
+                <div className="flex justify-between ...">
+                  <div className="w-[60%]">
+                    <Search
+                      placeholder="Search files..."
+                      onChange={handleSearchChange}
+                      containerStyle={{
+                        backgroundColor: 'white',
+                        borderRadius: '4rem',
+                        border: 'none',
+                        width: '',
+                      }}
+                      inputStyle={{
+                        border: 'none',
+                        fontFamily: 'montserrat',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        outline: 'none',
+                        color: '#9CA3AF',
+                        width: '60%',
+                        marginRight: '30%',
+                      }}
                     />
                   </div>
-                  <div>
-                    <img
-                      onClick={() => handleChangeGrid(false)}
-                      src={gridOn ? Flex : FlexOn}
-                      alt="Flex_Icon"
-                    />
+                  <div className="flex justify-between pt-4 gap-3 ...">
+                    <div>
+                      <img
+                        onClick={() => handleChangeGrid(true)}
+                        src={gridOn ? GridOn : Grid}
+                        alt="Grid_Icon"
+                      />
+                    </div>
+                    <div>
+                      <img
+                        onClick={() => handleChangeGrid(false)}
+                        src={gridOn ? Flex : FlexOn}
+                        alt="Flex_Icon"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -249,7 +262,7 @@ const Lobby = () => {
               </p>
               <div className="flex justify-center ...">
                 <button
-                  onClick={() => setEnableWorkSpaceModal(true)}
+                  onClick={handleChangeWorkSpaceModal}
                   className="px-4 py-2.5 text-sm rounded-xl leading-5 font-semibold bg-blue-600 text-white"
                 >
                   + Add Workspace

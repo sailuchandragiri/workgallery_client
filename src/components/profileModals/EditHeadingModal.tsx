@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
-// import SearchIcon from '../../assets/SearchIcon.svg';
-// import Figma from '../../assets/figma.svg';
 
 interface ParentComponentProps {
   groupModalStatus: boolean;
@@ -12,7 +10,7 @@ interface ParentComponentProps {
   isMenu: boolean;
 }
 
-const CreateGroupModal: React.FC<ParentComponentProps> = ({
+const EditHeadingModal: React.FC<ParentComponentProps> = ({
   groupModalStatus,
   onChildButtonClick,
   isGroup,
@@ -36,10 +34,8 @@ const CreateGroupModal: React.FC<ParentComponentProps> = ({
       isMenu={isMenu}
     >
       <div className="p-3 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
-        <h3 className="text-lg font-semibold text-gray-900">Create a group</h3>
-        <label className="leading-8 text-gray-500 text-sm font-medium mt-2">
-          Enter a group name
-        </label>
+        <h3 className="text-lg font-semibold text-gray-900">Edit Heading</h3>
+        <label className="leading-8 text-gray-500 text-sm font-medium mt-2">Heading</label>
         <input
           type="text"
           value={inputValue}
@@ -55,7 +51,7 @@ const CreateGroupModal: React.FC<ParentComponentProps> = ({
             }`}
             disabled={!inputValue}
           >
-            Create
+            Confirm
           </button>
         </div>
       </div>
@@ -63,4 +59,4 @@ const CreateGroupModal: React.FC<ParentComponentProps> = ({
   );
 };
 
-export default CreateGroupModal;
+export default EditHeadingModal;

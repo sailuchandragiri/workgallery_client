@@ -3,11 +3,23 @@ import React from 'react';
 interface ChildComponentProps {
   status: boolean;
   onButtonClick: () => void;
-  children: unknown;
+  children: React.ReactNode;
   isGroup: boolean;
+  isWidth: string;
+  isMobile: boolean;
+  isMenu: boolean;
 }
 
-const Modal: React.FC<ChildComponentProps> = ({ status, onButtonClick, children, isGroup }) => {
+const Modal: React.FC<ChildComponentProps> = ({
+  status,
+  onButtonClick,
+  children,
+  isGroup,
+  isWidth,
+  isMobile,
+  isMenu,
+}) => {
+  console.log(isWidth, 'width');
   return (
     <>
       {status && (
@@ -20,11 +32,15 @@ const Modal: React.FC<ChildComponentProps> = ({ status, onButtonClick, children,
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
           <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div
+              className={`flex  items-end ${
+                isMenu ? 'justify-end py-2 ' : 'justify-center p-4 md:min-h-full'
+              } text-center sm:items-center sm:p-0`}
+            >
               <div
-                className={`w-[100%] relative p-6 transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all ${
-                  isGroup ? 'sm:my-8 sm:w-full sm:max-w-3xl' : 'sm:my-8 sm:w-full sm:max-w-xl'
-                }`}
+                className={`w-[85%] md:w-[30%] relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-${isWidth}
+               `}
+                onClick={(e) => e.stopPropagation()}
               >
                 <p
                   className="text-right text-xl text-gray-500 cursor-pointer"

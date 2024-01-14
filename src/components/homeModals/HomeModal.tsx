@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
 import Search from '../Search';
-import LobbyCardImg from '../../assets/LobbyCardImg.svg';
+import ProfileIcon from '../../assets/ProfileIcon.svg';
 
 interface ParentComponentProps {
   groupModalStatus: boolean;
@@ -11,7 +11,7 @@ interface ParentComponentProps {
   isMobile: boolean;
 }
 
-const AddGroupModal: React.FC<ParentComponentProps> = ({
+const HomeModal: React.FC<ParentComponentProps> = ({
   groupModalStatus,
   onChildButtonClick,
   isGroup,
@@ -28,11 +28,30 @@ const AddGroupModal: React.FC<ParentComponentProps> = ({
     console.log('search');
   };
 
-  const LobbyImages = [LobbyCardImg, LobbyCardImg, LobbyCardImg, LobbyCardImg];
+  const UserData = [
+    {
+      image: ProfileIcon,
+      user_id: 'organic__al.wg',
+      identity: 'Alumini at Lovely Professional University',
+    },
+    {
+      image: ProfileIcon,
+      user_id: 'organic__al.wg',
+      identity: 'Alumini at Lovely Professional University',
+    },
+    {
+      image: ProfileIcon,
+      user_id: 'organic__al.wg',
+      identity: 'Alumini at Lovely Professional University',
+    },
+    {
+      image: ProfileIcon,
+      user_id: 'organic__al.wg',
+      identity: 'Alumini at Lovely Professional University',
+    },
+  ];
 
-  const buttonOptions = ['GitHub', 'Figma', 'LinkedIn', 'Instagram', 'Behance'];
-
-  const [isChecked, setIsChecked] = useState(false);
+  const buttonOptions = ['Users', 'Communities'];
 
   return (
     <Modal
@@ -62,8 +81,16 @@ const AddGroupModal: React.FC<ParentComponentProps> = ({
             marginRight: '127px',
           }}
         />
-        <div className="flex justify-between font-montserrat gap-3 w-[100%]">
-          <aside className="w-[25%] border-r-2 p-4 flex flex-col gap-3">
+        <div
+          className={`flex mt-1 md:mt-3 justify-between font-montserrat gap-3 w-[100%] ${
+            isMobile ? 'flex-col' : 'flex-row'
+          }`}
+        >
+          <aside
+            className={`${
+              isMobile ? 'w-[100%] flex gap-3' : 'w-[30%] border-r-2 pr-4 flex flex-col gap-3'
+            }`}
+          >
             {buttonOptions?.map((item) => (
               <button
                 onClick={() => handleSelectButton(item)}
@@ -75,39 +102,29 @@ const AddGroupModal: React.FC<ParentComponentProps> = ({
               </button>
             ))}
           </aside>
-          <div className="w-[75%] grid grid-cols-2 gap-4">
-            {LobbyImages.map((item) => (
-              <div
-                className={`w-[100%] border font-normal gap-3 font-montserrat rounded-2xl bg-white pt-4 pl-4 pr-4  border-neutral-200 pb-4 flex flex-row flex-col justify-between ... `}
-              >
-                <div className="flex justify-end">
-                  <input type="checkbox" />
-                </div>
-                <img className="" src={item} alt="Card_Image" />
-                <div className="flex flex-col justify-center ...">
-                  <p className="text-zinc-900 font-montserrat text-sm font-semibold">
-                    Created UI designs for smart home appliancesCreated UI designs for smart home
-                    appliances
-                  </p>
+          <div
+            className={`${
+              isMobile ? 'w-[100%] flex flex-col gap-4 ' : 'w-[75%] flex flex-col gap-4 px-4'
+            } mt-3 md:mt-0`}
+          >
+            {UserData.map((item) => (
+              <div className="flex gap-3">
+                <img
+                  src={item.image}
+                  alt="Profile_Icon"
+                  className="rounded-full w-[2rem] h-[2rem] mt-3 md:mt-1.5"
+                />
+                <div className="flex flex-col justify-between ...">
+                  <h4 className="text-gray-800 leading-6 font-semibold text-sm">{item.user_id}</h4>
+                  <p className="text-neutral-400 text-xs leading-5">{item.identity}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-        <div className="flex justify-end mt-4 gap-8">
-          <p className="text-gray-600 text-xs font-semibold mt-3">2 Fragment</p>
-          <button
-            className={` px-6 py-2 bg-blue-600 text-white rounded-md ${
-              isChecked ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
-            }`}
-            disabled={!isChecked}
-          >
-            Add Fragments
-          </button>
         </div>
       </div>
     </Modal>
   );
 };
 
-export default AddGroupModal;
+export default HomeModal;
