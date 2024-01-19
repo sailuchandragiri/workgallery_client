@@ -1,3 +1,4 @@
+
 import Layout from './components/Layout/Layout';
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
@@ -11,6 +12,7 @@ import Lobby from './pages/Lobby';
 import Connections from './pages/Connections';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+
 //TODO:Disable react dev tools here
 function App() {
   return (
@@ -22,11 +24,12 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/gallery" element={<ProfilePage />} />
         <Route path="/lobby" element={<Lobby />} />
+
         <Route path="/connections" element={<Connections />} />
         {/*protected routes*/}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRole={subscription.free} />}>
-            <Route path="/users" element={<UserList />} />
+            <Route path="/lobby" element={<Lobby />} />
           </Route>
         </Route>
         <Route path="oauth/authorization" element={<OAuthController />} />

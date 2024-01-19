@@ -16,7 +16,8 @@
   .max-container {
     max-width: 1440px;
     margin: 0 auto;
-    font-family: 'poppins', sans-serif;
+
+    font-family: 'montserrat', sans-serif;
   }
 
   .input {

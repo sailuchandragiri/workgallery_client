@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Hero = () => {
   const [showInput, setShowInput] = useState(false);
@@ -10,10 +10,10 @@ const Hero = () => {
   return (
     <section className="text-center">
       <h1 className="text-gray-800  text-7xl  pt-20 pb-9">
-        Craft your{' '}
+        Craft your{" "}
         <span className="font-bold italic">
           Digital <br /> Portfolio
-        </span>{' '}
+        </span>{" "}
         with ease!
       </h1>
       <p className="text-lg font-medium pb-20">
