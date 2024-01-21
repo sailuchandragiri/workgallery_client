@@ -8,7 +8,6 @@ import 'tailwindcss/tailwind.css';
 const SET_FIELD = 'SET_FIELD';
 const RESET_FORM = 'RESET_FORM';
 
-// Action interface
 interface SetFieldAction {
   type: typeof SET_FIELD;
   field: string;
