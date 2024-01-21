@@ -12,7 +12,8 @@ import DeleteIcon from '../assets/DeleteIcon.svg';
 import EducationImage from '../assets/EducationImage.svg';
 import CertificateImage from '../assets/CertificateImage.svg';
 import EditHeadingModal from '../components/profileModals/EditHeadingModal';
-import CreateCommunityModal from '../components/profileModals/CreateCommunityModal';
+import EditProfileModal from '../components/profileModals/EditProfileModal';
+import EditModal from '../components/profileModals/EditModal';
 
 interface TabProps {
   label: string;
@@ -21,6 +22,7 @@ interface TabProps {
 const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
   const [editHeading, setEditHeading] = useState(false);
   const [createCommunity, setCreateCommunity] = useState(false);
+  const [editData, setEditData] = useState(false);
   const [activeTab, setActiveTab] = useState<number>(0);
   const shadowStyle = {
     boxShadow: '0 -4px 6px -6px white',
@@ -34,6 +36,10 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
 
   const handleCreateCommunity = () => {
     setCreateCommunity((prev) => !prev);
+  };
+
+  const handleEditData = () => {
+    setEditData((prev) => !prev);
   };
 
   const ExtraData = [
@@ -58,6 +64,49 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     {
       title: 'Fund Raiser',
       sub_title: 'Vijay Social Welfare Society',
+      content:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+    },
+  ];
+
+  const AchievementsData = [
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      sub_title: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      content:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      sub_title: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      content:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      sub_title: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      content:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      sub_title: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      content:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      sub_title: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
       content:
         "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
     },
@@ -172,6 +221,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
   const ExperienceData = [
     {
       image: ExperienceImage,
+      designation: 'UI UX Designer',
       title: 'NxtWave Disruptive Technologies',
       sub_title: 'May 2021 - Aug 2021 · 4 mos',
       content:
@@ -187,6 +237,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       image: ExperienceImage,
+      designation: 'UI UX Designer',
       title: 'NxtWave Disruptive Technologies',
       sub_title: 'May 2021 - Aug 2021 · 4 mos',
       content:
@@ -202,6 +253,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       image: ExperienceImage,
+      designation: 'UI UX Designer',
       title: 'NxtWave Disruptive Technologies',
       sub_title: 'May 2021 - Aug 2021 · 4 mos',
       content:
@@ -217,6 +269,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       image: ExperienceImage,
+      designation: 'UI UX Designer',
       title: 'NxtWave Disruptive Technologies',
       sub_title: 'May 2021 - Aug 2021 · 4 mos',
       content:
@@ -232,6 +285,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       image: ExperienceImage,
+      designation: 'UI UX Designer',
       title: 'NxtWave Disruptive Technologies',
       sub_title: 'May 2021 - Aug 2021 · 4 mos',
       content:
@@ -257,7 +311,10 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               <div className="flex flex-col md:flex-row gap-6">
                 <img src={item.image} alt="Experience_Image" />
                 <div className="flex flex-col gap-4">
-                  <h3 className="text-zinc-900 font-semibold text-sm md:text-xl leading-10">
+                  <h2 className="text-zinc-900 font-semibold text-sm md:text-xl leading-10">
+                    {item.designation}
+                  </h2>
+                  <h3 className="text-gray-600 font-semibold text-sm md:text-lg leading-10">
                     {item.title}
                   </h3>
                   <p className="text-xs md:text-sm text-gray-600 leading-6">{item.sub_title}</p>
@@ -284,7 +341,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -328,7 +385,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -341,13 +398,17 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     {
       label: 'Achievement',
       content: (
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8">
-          {ExtraData?.map((item) => (
+        <div className="flex flex-col gap-8">
+          {AchievementsData?.map((item) => (
             <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-6">
-              <div className="flex flex-col justify-center gap-4">
-                <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-6">{item.sub_title}</p>
-                <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+              <div className="flex flex-col md:flex-row gap-6">
+                <img src={item.image} alt="Experience_Image" />
+                <div className="flex flex-col justify-center gap-4">
+                  <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-6">{item.sub_title}</p>
+                  <p className="text-gray-600 text-sm leading-6">{item.Date}</p>
+                  <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+                </div>
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
@@ -359,7 +420,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -393,7 +454,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -424,7 +485,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px]  after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -444,7 +505,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
             groupModalStatus={editHeading}
             onChildButtonClick={handleEditHeading}
             isGroup={false}
-            isWidth="xl"
+            isWidth="30%"
             isMobile={false}
             isMenu={false}
           />
@@ -452,13 +513,26 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
       </div>
       <div onClick={handleCreateCommunity}>
         {createCommunity && (
-          <CreateCommunityModal
+          <EditProfileModal
             groupModalStatus={createCommunity}
             onChildButtonClick={handleCreateCommunity}
             isGroup={false}
-            isWidth="xl"
+            isWidth="30%"
             isMobile={false}
             isMenu={false}
+          />
+        )}
+      </div>
+      <div onClick={handleEditData}>
+        {editData && (
+          <EditModal
+            groupModalStatus={editData}
+            onChildButtonClick={handleEditData}
+            isGroup={false}
+            isWidth="30%"
+            isMobile={false}
+            isMenu={false}
+            tab={tabs[activeTab].label}
           />
         )}
       </div>
@@ -540,8 +614,11 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               ))}
             </div>
             <div className="w-[100%] flex flex-col gap-8 py-4">
-              <div className="w-[100%] text-sm zinc-500 bg-stone-50 text-zinc-400 border-2 border-dashed text-center py-4 rounded-full leading-6">
-                + Add Education
+              <div
+                className="w-[100%] text-sm zinc-500 bg-stone-50 text-zinc-400 border-2 border-dashed text-center py-4 rounded-full leading-6"
+                onClick={handleEditData}
+              >
+                + Add {tabs[activeTab].label}
               </div>
               {tabs[activeTab].content}
             </div>

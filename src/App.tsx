@@ -10,6 +10,8 @@ import OAuthController from './components/auth/OAuthController';
 import Lobby from './pages/Lobby';
 import Connections from './pages/Connections';
 import HomePage from './pages/HomePage';
+// import ProfilePage from './pages/ProfilePage';
+import GalleryPage from './pages/GalleryPage';
 import ProfilePage from './pages/ProfilePage';
 //TODO:Disable react dev tools here
 function App() {

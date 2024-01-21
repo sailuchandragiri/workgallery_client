@@ -36,7 +36,7 @@ const LobbyCard: React.FC<CardProps> = ({
             imgUrl={imageSrc}
             textContent={content}
             isGroup={false}
-            isWidth="xl"
+            isWidth="30%"
             isMobile={false}
           />
         )}
