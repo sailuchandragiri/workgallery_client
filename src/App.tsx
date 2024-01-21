@@ -23,6 +23,7 @@ function App() {
         <Route path="/gallery" element={<ProfilePage />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/connections" element={<Connections />} />
+        <Route path="oauth/authorization" element={<OAuthController />} />
         {/*protected routes*/}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRole={subscription.free} />}>

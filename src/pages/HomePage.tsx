@@ -14,15 +14,15 @@ import GalleryWhiteIcon from '../assets/GalleryWhiteIcon.svg';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSearch, setIsSearch] = useState(false);
+  const [requestSearchModel, setRequestSearchModel] = useState(false);
   const [isSelectedButton, setIsSelectedButton] = useState('');
 
   const handleSelectButton = (value: string) => {
     setIsSelectedButton(value);
   };
 
-  const handleSearchModalClick = () => {
-    setIsSearch((prev) => !prev);
+  const onRequestClose = () => {
+    setRequestSearchModel((prev) => !prev);
   };
 
   const handleSearchChange = (value: string) => {
@@ -92,16 +92,16 @@ const HomePage = () => {
   ];
   return (
     <>
-      <div onClick={handleSearchModalClick}>
-        {isSearch && (
+      <div onClick={onRequestClose}>
+        {requestSearchModel ? (
           <HomeModal
-            groupModalStatus={isSearch}
-            onChildButtonClick={handleSearchModalClick}
+            groupModalStatus={requestSearchModel}
+            onChildButtonClick={onRequestClose}
             isGroup={false}
             isWidth="xl"
             isMobile={false}
           />
-        )}
+        ) : null}
       </div>
       <section className="grid-container-mobile md:grid-container-sections font-montserrat bg-zinc-100 px-2 md:px-6 py-6">
         <div className="hidden md:block">
@@ -201,7 +201,7 @@ const HomePage = () => {
         <div className="hidden md:block">
           <aside className="h-[100%] flex flex-col gap-4 w-full overflow-y-auto">
             <div className="flex justify-between gap-4">
-              <div className="w-[100%]" onClick={handleSearchModalClick}>
+              <div className="w-[100%]" onClick={onRequestClose}>
                 <Search
                   placeholder="Search school, university etc......"
                   onChange={handleSearchChange}
