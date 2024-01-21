@@ -11,10 +11,12 @@ import HomeProfile from '../assets/HomeProfile.svg';
 import FilledSave from '../assets/FilledSave.svg';
 import EyeIcon from '../assets/HomeEyeIcon.svg';
 import GalleryWhiteIcon from '../assets/GalleryWhiteIcon.svg';
+import GalleryPageModal from '../components/galleryModals/GalleryPageModal';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearch, setIsSearch] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
   const [isSelectedButton, setIsSelectedButton] = useState('');
 
   const handleSelectButton = (value: string) => {
@@ -23,6 +25,10 @@ const HomePage = () => {
 
   const handleSearchModalClick = () => {
     setIsSearch((prev) => !prev);
+  };
+
+  const handleShowGallery = () => {
+    setShowGallery((prev) => !prev);
   };
 
   const handleSearchChange = (value: string) => {
@@ -98,7 +104,18 @@ const HomePage = () => {
             groupModalStatus={isSearch}
             onChildButtonClick={handleSearchModalClick}
             isGroup={false}
-            isWidth="xl"
+            isWidth="40%"
+            isMobile={false}
+          />
+        )}
+      </div>
+      <div onClick={handleShowGallery}>
+        {showGallery && (
+          <GalleryPageModal
+            groupModalStatus={showGallery}
+            onChildButtonClick={handleShowGallery}
+            isGroup={false}
+            isWidth="85%"
             isMobile={false}
           />
         )}
@@ -125,7 +142,10 @@ const HomePage = () => {
                   </div>
                 ))}
               </div>
-              <div className="bg-blue-600 rounded-full py-3 flex gap-2 font-medium justify-center text-white">
+              <div
+                className="bg-blue-600 rounded-full py-3 flex gap-2 font-medium justify-center text-white"
+                onClick={handleShowGallery}
+              >
                 <img src={GalleryWhiteIcon} alt="Gallery_Icon" />
                 View My Gallery
               </div>

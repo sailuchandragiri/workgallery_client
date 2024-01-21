@@ -106,25 +106,27 @@ const Header = () => {
             </ul>
           </div>
         </div>
-        <div className="block md:hidden px-2 flex justify-between ...">
-          {pathname === '/lobby' ? (
-            <div className="text-sm flex gap-3" onClick={handleMenuHomeModal}>
-              <h3 className="mt-1">Workspace</h3> <img src={DownArrow} alt="Down_arrow" />
-            </div>
-          ) : (
-            <img src={WorkGalleryIcon} alt="Profile_Icon" />
-          )}
-          <div className="flex gap-3">
-            <img
-              src={SearchIcon}
-              alt="SearchIcon"
-              className="h-[1.5rem] w-[1.5rem] mt-1"
-              onClick={handleHomeSearchModal}
-            />
-            {pathname === '/' && <img src={NotificationIcon} alt="NotificationIcon" />}
-            {pathname !== '/lobby' && (
-              <img src={Menu} alt="MenuIcon" onClick={handleMenuHomeModal} />
+        <div className="block md:hidden">
+          <div className=" px-2 flex justify-between ...">
+            {pathname === '/lobby' ? (
+              <div className="text-sm flex gap-3" onClick={handleMenuHomeModal}>
+                <h3 className="mt-1">Workspace</h3> <img src={DownArrow} alt="Down_arrow" />
+              </div>
+            ) : (
+              <img src={WorkGalleryIcon} alt="Profile_Icon" />
             )}
+            <div className="flex gap-3">
+              <img
+                src={SearchIcon}
+                alt="SearchIcon"
+                className="h-[1.5rem] w-[1.5rem] mt-1"
+                onClick={handleHomeSearchModal}
+              />
+              {pathname === '/' && <img src={NotificationIcon} alt="NotificationIcon" />}
+              {pathname !== '/lobby' && (
+                <img src={Menu} alt="MenuIcon" onClick={handleMenuHomeModal} />
+              )}
+            </div>
           </div>
         </div>
       </header>

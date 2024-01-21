@@ -9,6 +9,7 @@ interface ParentComponentProps {
   isGroup: boolean;
   isWidth: string;
   isMobile: boolean;
+  isMenu: boolean;
 }
 
 const HomeModal: React.FC<ParentComponentProps> = ({
@@ -17,6 +18,7 @@ const HomeModal: React.FC<ParentComponentProps> = ({
   isGroup,
   isWidth,
   isMobile,
+  isMenu,
 }) => {
   const [isSelected, setIsSelected] = useState('');
 
@@ -60,6 +62,7 @@ const HomeModal: React.FC<ParentComponentProps> = ({
       isGroup={isGroup}
       isWidth={isWidth}
       isMobile={isMobile}
+      isMenu={isMenu}
     >
       <div className="p-2 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <Search
