@@ -19,6 +19,7 @@ const Modal: React.FC<ChildComponentProps> = ({
   isMenu,
 }) => {
   console.log(width, 'width');
+  console.log(typeof width);
   return (
     <>
       {status && (
@@ -37,10 +38,10 @@ const Modal: React.FC<ChildComponentProps> = ({
               } text-center sm:items-center sm:p-0`}
             >
               <div
-                className={`w-[100%] md:w-[${
-                  width === '100%' ? '100%' : '30%'
-                }] my-8 relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all
-               `}
+                // style={{ width: `${width}%` }}
+                //   className={`w-[100%] md:w-[${width}%] my-8 relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all
+                //  `}
+                className={`w-[100%] ${width} my-8 relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all`}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-end">

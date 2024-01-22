@@ -389,7 +389,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
             groupModalStatus={editHeading}
             onRequestClose={handleEditHeading}
             isGroup={false}
-            width="30%"
+            width={'md:w-1/3'}
             isMobile={false}
             isMenu={false}
           />
@@ -401,7 +401,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
             groupModalStatus={showEditProfileModel}
             onRequestClose={requestEditProfileModel}
             isGroup={false}
-            width="30%"
+            width={'md:w-2/4'}
             isMobile={false}
             isMenu={false}
           />
@@ -413,7 +413,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
             groupModalStatus={showEditDataModel}
             onRequestClose={requestEditDataModel}
             isGroup={false}
-            width="30%"
+            width={'md:w-2/4'}
             isMobile={false}
             isMenu={false}
             tab={tabs[activeTab].label}
