@@ -3,10 +3,10 @@ import Modal from '../Modal';
 import { ModalProps } from '../../constants/constants';
 
 const EditHeadingModal: React.FC<ModalProps> = (props) => {
-  const [inputValue, setInputValue] = useState('');
+  const [headingValue, setHeadingValue] = useState('');
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleHeadingChange = (e: { target: { value: React.SetStateAction<string> } }) => {
+    setHeadingValue(e.target.value);
   };
 
   return (
@@ -16,8 +16,8 @@ const EditHeadingModal: React.FC<ModalProps> = (props) => {
         <label className="leading-8 text-gray-500 text-sm font-medium mt-2">Heading</label>
         <input
           type="text"
-          value={inputValue}
-          onChange={handleInputChange}
+          value={headingValue}
+          onChange={handleHeadingChange}
           className="p-4 pl-6 w-full text-center text-sm font-semibold leading-5 bg-neutral-100 rounded-md focus:outline-none "
           placeholder=""
         />
@@ -25,9 +25,9 @@ const EditHeadingModal: React.FC<ModalProps> = (props) => {
         <div className="flex justify-end">
           <button
             className={` px-6 py-2 bg-blue-600 text-white rounded-md ${
-              inputValue ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
+              headingValue ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
             }`}
-            disabled={!inputValue}
+            disabled={!headingValue}
           >
             Confirm
           </button>

@@ -14,6 +14,7 @@ import CertificateImage from '../assets/CertificateImage.svg';
 import EditHeadingModal from '../components/profileModals/EditHeadingModal';
 import EditProfileModal from '../components/profileModals/EditProfileModal';
 import EditModal from '../components/profileModals/EditModal';
+import DeleteModal from '../components/profileModals/DeleteModal';
 
 interface TabProps {
   label: string;
@@ -24,6 +25,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
   const [editHeading, setEditHeading] = useState<boolean>(false);
   const [showEditProfileModel, setShowEditProfileModel] = useState<boolean>(false);
   const [showEditDataModel, setShowEditDataModel] = useState<boolean>(false);
+  const [showDeletModal, setShowDeleteModal] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<number>(0);
   const shadowStyle = {
     boxShadow: '0 -4px 6px -6px white',
@@ -41,6 +43,10 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
 
   const requestEditDataModel = () => {
     setShowEditDataModel((prev) => !prev);
+  };
+
+  const requestDeleteModal = () => {
+    setShowDeleteModal((prev) => !prev);
   };
 
   const ExtraData = [
@@ -215,8 +221,8 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
-                  <img src={EditIcon} alt="Edit_Icon" />
-                  <img src={DeleteIcon} alt="Delete-icon" />
+                  <img src={EditIcon} alt="Edit_Icon" onClick={requestEditDataModel} />
+                  <img src={DeleteIcon} alt="Delete-icon" onClick={requestDeleteModal} />
                   <div className="flex justify-between ...">
                     <p className="flex text-sm font-medium text-zinc-800 w-[80%] mr-4 mt-1">
                       Public
@@ -260,8 +266,8 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
-                  <img src={EditIcon} alt="Edit_Icon" />
-                  <img src={DeleteIcon} alt="Delete-icon" />
+                  <img src={EditIcon} alt="Edit_Icon" onClick={requestEditDataModel} />
+                  <img src={DeleteIcon} alt="Delete-icon" onClick={requestDeleteModal} />
                   <div className="flex justify-between ...">
                     <p className="flex text-sm font-medium text-zinc-800 w-[80%] mr-4 mt-1">
                       Public
@@ -295,8 +301,8 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
-                  <img src={EditIcon} alt="Edit_Icon" />
-                  <img src={DeleteIcon} alt="Delete-icon" />
+                  <img src={EditIcon} alt="Edit_Icon" onClick={requestEditDataModel} />
+                  <img src={DeleteIcon} alt="Delete-icon" onClick={requestDeleteModal} />
                   <div className="flex justify-between ...">
                     <p className="flex text-sm font-medium text-zinc-800 w-[80%] mr-4 mt-1">
                       Public
@@ -329,8 +335,8 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
-                  <img src={EditIcon} alt="Edit_Icon" />
-                  <img src={DeleteIcon} alt="Delete-icon" />
+                  <img src={EditIcon} alt="Edit_Icon" onClick={requestEditDataModel} />
+                  <img src={DeleteIcon} alt="Delete-icon" onClick={requestDeleteModal} />
                   <div className="flex justify-between ...">
                     <p className="flex text-sm font-medium text-zinc-800 w-[80%] mr-4 mt-1">
                       Public
@@ -361,8 +367,8 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
-                  <img src={EditIcon} alt="Edit_Icon" />
-                  <img src={DeleteIcon} alt="Delete-icon" />
+                  <img src={EditIcon} alt="Edit_Icon" onClick={requestEditDataModel} />
+                  <img src={DeleteIcon} alt="Delete-icon" onClick={requestDeleteModal} />
                   <div className="flex justify-between ...">
                     <p className="flex text-sm font-medium text-zinc-800 w-[80%] mr-4 mt-1">
                       Public
@@ -417,6 +423,18 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
             isMobile={false}
             isMenu={false}
             tab={tabs[activeTab].label}
+          />
+        )}
+      </div>
+      <div onClick={requestDeleteModal}>
+        {showDeletModal && (
+          <DeleteModal
+            isOpened={showDeletModal}
+            onRequestClose={requestDeleteModal}
+            isGroup={false}
+            width={'md:w-2/4'}
+            isMobile={false}
+            isMenu={false}
           />
         )}
       </div>

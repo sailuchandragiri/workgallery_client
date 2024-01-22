@@ -18,7 +18,6 @@ const Modal: React.FC<ChildComponentProps> = ({
   width,
   isMenu,
 }) => {
-  console.log(width, 'width');
   console.log(typeof width);
   return (
     <>
