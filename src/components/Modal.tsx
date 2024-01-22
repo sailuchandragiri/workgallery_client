@@ -1,17 +1,17 @@
 import React from 'react';
 import Close from '../assets/Close.svg';
 interface ChildComponentProps {
-  status: boolean;
+  isOpened: boolean;
   onRequestClose: () => void;
   children: React.ReactNode;
   isGroup: boolean;
   width: string;
-  isMobile: boolean;
-  isMenu: boolean;
+  isMobile?: boolean;
+  isMenu?: boolean;
 }
 
 const Modal: React.FC<ChildComponentProps> = ({
-  status,
+  isOpened,
   onRequestClose,
   children,
   isGroup,
@@ -22,7 +22,7 @@ const Modal: React.FC<ChildComponentProps> = ({
   console.log(typeof width);
   return (
     <>
-      {status && (
+      {isOpened && (
         <section
           className={`relative z-10 font-montserrat ${isGroup ? 'bg-zinc-100' : ''}`}
           aria-labelledby="modal-title"
@@ -38,9 +38,6 @@ const Modal: React.FC<ChildComponentProps> = ({
               } text-center sm:items-center sm:p-0`}
             >
               <div
-                // style={{ width: `${width}%` }}
-                //   className={`w-[100%] md:w-[${width}%] my-8 relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all
-                //  `}
                 className={`w-[100%] ${width} my-8 relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all`}
                 onClick={(e) => e.stopPropagation()}
               >

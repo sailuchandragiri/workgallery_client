@@ -16,7 +16,7 @@ interface NavLinkItem {
   icon: string;
   activeIcon: string;
 }
-
+//eslint-disable-next-line
 export const navLinks: NavLinkItem[] = [
   { label: 'Home', href: '/', icon: Home, activeIcon: HomeActive },
   { label: 'Lobby', href: '/lobby', icon: Lobby, activeIcon: LobbyActive },

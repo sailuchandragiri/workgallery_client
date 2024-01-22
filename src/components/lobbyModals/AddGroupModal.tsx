@@ -3,21 +3,9 @@ import Modal from '../Modal';
 import Search from '../Search';
 import LobbyCardImg from '../../assets/LobbyCardImg.svg';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-}
+import { ModalProps } from '../../constants/constants';
 
-const AddGroupModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-}) => {
+const AddGroupModal: React.FC<ModalProps> = (props) => {
   const [isSelected, setIsSelected] = useState('');
 
   const handleSelectButton = (value: string) => {
@@ -35,13 +23,7 @@ const AddGroupModal: React.FC<ParentComponentProps> = ({
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-    >
+    <Modal {...props}>
       <div className="p-2 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <Search
           placeholder="Search"

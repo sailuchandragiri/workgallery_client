@@ -386,10 +386,10 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
       <div onClick={handleEditHeading}>
         {editHeading && (
           <EditHeadingModal
-            groupModalStatus={editHeading}
+            isOpened={editHeading}
             onRequestClose={handleEditHeading}
             isGroup={false}
-            width={'md:w-1/3'}
+            width={'md:w-2/4'}
             isMobile={false}
             isMenu={false}
           />
@@ -398,7 +398,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
       <div onClick={requestEditProfileModel}>
         {showEditProfileModel && (
           <EditProfileModal
-            groupModalStatus={showEditProfileModel}
+            isOpened={showEditProfileModel}
             onRequestClose={requestEditProfileModel}
             isGroup={false}
             width={'md:w-2/4'}
@@ -410,7 +410,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
       <div onClick={requestEditDataModel}>
         {showEditDataModel && (
           <EditModal
-            groupModalStatus={showEditDataModel}
+            isOpened={showEditDataModel}
             onRequestClose={requestEditDataModel}
             isGroup={false}
             width={'md:w-2/4'}

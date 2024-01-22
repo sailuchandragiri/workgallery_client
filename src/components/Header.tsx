@@ -33,10 +33,10 @@ const Header = () => {
       <div onClick={handleHomeSearchModal}>
         {homeSearch && pathname === '/' && (
           <HomeModal
-            groupModalStatus={homeSearch}
-            onChildButtonClick={handleHomeSearchModal}
+            isOpened={homeSearch}
+            onRequestClose={handleHomeSearchModal}
             isGroup={false}
-            isWidth="xl"
+            width={'md:w-5/6'}
             isMobile={true}
             isMenu={false}
           />
@@ -45,10 +45,10 @@ const Header = () => {
       <div onClick={handleMenuHomeModal}>
         {homeMenu && pathname === '/' && (
           <HomeMenuModal
-            groupModalStatus={homeMenu}
-            onChildButtonClick={handleMenuHomeModal}
+            isOpened={homeMenu}
+            onRequestClose={handleMenuHomeModal}
             isGroup={false}
-            isWidth="xl"
+            width={'md:w-5/6'}
             isMobile={true}
             isMenu={true}
           />
@@ -57,10 +57,10 @@ const Header = () => {
       <div onClick={handleMenuHomeModal}>
         {homeMenu && pathname === '/lobby' && (
           <LobbyMenuModal
-            groupModalStatus={homeMenu}
-            onChildButtonClick={handleMenuHomeModal}
+            isOpened={homeMenu}
+            onRequestClose={handleMenuHomeModal}
             isGroup={false}
-            isWidth="xl"
+            width="xl"
             isMobile={true}
             isMenu={true}
           />

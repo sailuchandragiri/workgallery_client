@@ -3,23 +3,9 @@ import Modal from '../Modal';
 import CommunityImage from '../../assets/CommunityImage.svg';
 import ProfileIcon from '../../assets/ProfileIcon.svg';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-  isMenu: boolean;
-}
+import { ModalProps } from '../../constants/constants';
 
-const HomeMenuModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-  isMenu,
-}) => {
+const HomeMenuModal: React.FC<ModalProps> = (props) => {
   const data = [
     {
       profile_icon: ProfileIcon,
@@ -68,14 +54,7 @@ const HomeMenuModal: React.FC<ParentComponentProps> = ({
   ];
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-      isMenu={isMenu}
-    >
+    <Modal {...props}>
       <div className=" p-2 flex font-montserrat flex-col justify-between gap-4 ...">
         <aside className="h-[100%] flex flex-col gap-4 w-full overflow-y-auto">
           <div className="bg-white p-2 rounded-2xl flex flex-col gap-3">

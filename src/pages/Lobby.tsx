@@ -117,10 +117,10 @@ const Lobby = () => {
       <div onClick={handleChangeGroupModal}>
         {enableGroupModal && (
           <CreateGroupModal
-            groupModalStatus={enableGroupModal}
-            onChildButtonClick={handleChangeGroupModal}
+            isOpened={enableGroupModal}
+            onRequestClose={handleChangeGroupModal}
             isGroup={false}
-            isWidth="30%"
+            width={'md:w-2/4'}
             isMobile={false}
             isMenu={false}
           />
@@ -138,10 +138,10 @@ const Lobby = () => {
       <div onClick={handleChangeWorkSpaceModal}>
         {enableWorkSpaceModal && (
           <AddWorkSpaceModal
-            groupModalStatus={enableWorkSpaceModal}
-            onChildButtonClick={handleChangeWorkSpaceModal}
+            isOpened={enableWorkSpaceModal}
+            onRequestClose={handleChangeWorkSpaceModal}
             isGroup={false}
-            isWidth="30%"
+            width={'md:w-2/4'}
             isMobile={false}
           />
         )}
@@ -170,7 +170,7 @@ const Lobby = () => {
                       {section.items.map((item) => (
                         <div
                           key={item.label}
-                          className={`block p-2 pl-8 flex font-semibold  ${
+                          className={`p-2 pl-8 flex font-semibold  ${
                             activeItem === item.label
                               ? 'pl-14 text-lg text-blue-600'
                               : 'text-xs text-gray-500'
@@ -249,7 +249,7 @@ const Lobby = () => {
                       buttonText="Add to Gallary"
                       onClick={handleButtonClick}
                       style={{}}
-                      status={gridOn}
+                      isOpened={gridOn}
                     />
                   </div>
                 ))}

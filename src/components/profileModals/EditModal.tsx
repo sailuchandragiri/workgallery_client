@@ -1,6 +1,7 @@
 import React, { useReducer, FormEvent, ReactNode } from 'react';
 import Modal from '../Modal';
 import ImageUpload from '../../assets/ImageUpload.svg';
+import { ModalProps } from '../../constants/constants';
 
 // Action types
 const SET_FIELD = 'SET_FIELD';
@@ -15,6 +16,10 @@ interface SetFieldAction {
 interface ResetFormAction {
   type: typeof RESET_FORM;
   initialState: FormData;
+}
+
+interface EditModelProps extends ModalProps {
+  tab: string;
 }
 
 type FormAction = SetFieldAction | ResetFormAction;
@@ -58,25 +63,8 @@ const formReducer = (state: FormData, action: FormAction): FormData => {
   }
 };
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onRequestClose: () => void;
-  isGroup: boolean;
-  width: string;
-  isMobile: boolean;
-  isMenu: boolean;
-  tab: string;
-}
-
-const EditModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onRequestClose,
-  isGroup,
-  width,
-  isMobile,
-  isMenu,
-  tab,
-}) => {
+const EditModal: React.FC<EditModelProps> = (props) => {
+  const { tab } = props;
   const initialState: FormData = {
     title: '',
     companyName: '',
@@ -372,14 +360,7 @@ const EditModal: React.FC<ParentComponentProps> = ({
   };
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onRequestClose={onRequestClose}
-      isGroup={isGroup}
-      width={width}
-      isMobile={isMobile}
-      isMenu={isMenu}
-    >
+    <Modal {...props}>
       <div className="p-3 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <h3 className="text-lg font-semibold text-gray-900">Add {tab}</h3>
         <form onSubmit={handleSubmit}>

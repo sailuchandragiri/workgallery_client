@@ -6,36 +6,19 @@ import Edit from '../../assets/enableEdit.svg';
 import EnablePreview from '../../assets/eyeWhite.svg';
 import DisablePreview from '../../assets/eyeBlack.svg';
 import FileIcon from '../../assets/fileIcon.svg';
+import { ModalProps } from '../../constants/constants';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
+interface CardModalProps extends ModalProps {
   imgUrl: string;
   textContent: string;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
 }
 
-const CardModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  imgUrl,
-  textContent,
-  isGroup,
-  isWidth,
-  isMobile,
-}) => {
+const CardModal: React.FC<CardModalProps> = (props) => {
+  const { imgUrl, textContent } = props;
   const [enableEdit, setEnableEdit] = useState(false);
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-    >
+    <Modal {...props}>
       <div className="p-4 flex font-montserrat flex-col justify-between gap-6 ...">
         <div className="flex justify-center gap-2 md:gap-6 ...">
           <button
@@ -59,7 +42,7 @@ const CardModal: React.FC<ParentComponentProps> = ({
             Edit
           </button>
         </div>
-        <div className="flex flex-col justify-between gap-2 ...">
+        <div className="flex flex-col justify-between gap-2 ">
           {enableEdit && (
             <div className="flex justify-between ...">
               <p className="text-sm font-semibold text-zinc-800 leading-8">Fragment Image</p>
@@ -72,7 +55,7 @@ const CardModal: React.FC<ParentComponentProps> = ({
             )}
           </div>
           {enableEdit && (
-            <div className="flex justify-between ...">
+            <div className="flex justify-between ">
               <p className="text-sm font-semibold text-zinc-800 leading-8">Fragment Text</p>
               <img src={Edit} alt="Edit_Icon" />
             </div>

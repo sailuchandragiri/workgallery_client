@@ -3,23 +3,9 @@ import Modal from '../Modal';
 // import SearchIcon from '../../assets/SearchIcon.svg';
 // import Figma from '../../assets/figma.svg';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-  isMenu: boolean;
-}
+import { ModalProps } from '../../constants/constants';
 
-const CreateGroupModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-  isMenu,
-}) => {
+const CreateGroupModal: React.FC<ModalProps> = (props) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e) => {
@@ -27,14 +13,7 @@ const CreateGroupModal: React.FC<ParentComponentProps> = ({
   };
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-      isMenu={isMenu}
-    >
+    <Modal {...props}>
       <div className="p-3 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <h3 className="text-lg font-semibold text-gray-900">Create a group</h3>
         <label className="leading-8 text-gray-500 text-sm font-medium mt-2">

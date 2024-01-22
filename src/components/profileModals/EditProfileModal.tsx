@@ -2,39 +2,15 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import PlusIcon from '../../assets/Plus.svg';
 import ProfileImg from '../../assets/ProfilePhoto.svg';
-
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onRequestClose: () => void;
-  isGroup: boolean;
-  width: string;
-  isMobile: boolean;
-  isMenu: boolean;
-}
-
-const EditProfileModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onRequestClose,
-  isGroup,
-  width,
-  isMobile,
-  isMenu,
-}) => {
+import { ModalProps } from '../../constants/constants';
+const EditProfileModal: React.FC<ModalProps> = (props) => {
   const [inputValue, setInputValue] = useState('');
-
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onRequestClose={onRequestClose}
-      isGroup={isGroup}
-      width={width}
-      isMobile={isMobile}
-      isMenu={isMenu}
-    >
+    <Modal {...props}>
       <div className="p-3 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <h3 className="text-lg font-semibold text-gray-900">Edit Profile</h3>
         <div className="flex justify-between">

@@ -11,6 +11,7 @@ import Figma from '../../assets/figma.svg';
 import LinkedIn from '../../assets/linkedin.svg';
 import InstagramDisabled from '../../assets/InstagramDisabled.svg';
 import Behance from '../../assets/behance.svg';
+import { ModalProps } from '../../constants/constants';
 
 import DragAndDrop from '../DradAndDrop';
 import CreateGroupModal from '../lobbyModals/CreateGroupModal';
@@ -27,23 +28,7 @@ interface CollapsibleSection {
   items: MenuItem[];
 }
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-  isMenu: boolean;
-}
-
-const LobbyMenuModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-  isMenu,
-}) => {
+const LobbyMenuModal: React.FC<ModalProps> = (props) => {
   const [activeSections, setActiveSections] = useState<string[]>([]);
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [enableGroupModal, setEnableGroupModal] = useState(false);
@@ -103,10 +88,10 @@ const LobbyMenuModal: React.FC<ParentComponentProps> = ({
     <>
       {enableGroupModal && (
         <CreateGroupModal
-          groupModalStatus={enableGroupModal}
-          onChildButtonClick={handleChangeGroupModal}
+          isOpened={enableGroupModal}
+          onRequestClose={handleChangeGroupModal}
           isGroup={false}
-          isWidth="xl"
+          width="xl"
           isMobile={false}
           isMenu={false}
         />
@@ -122,21 +107,14 @@ const LobbyMenuModal: React.FC<ParentComponentProps> = ({
       )} */}
       {enableWorkSpaceModal && (
         <AddWorkSpaceModal
-          groupModalStatus={enableWorkSpaceModal}
-          onChildButtonClick={handleChangeWorkSpaceModal}
+          isOpened={enableWorkSpaceModal}
+          onRequestClose={handleChangeWorkSpaceModal}
           isGroup={false}
-          isWidth="xl"
+          width="xl"
           isMobile={false}
         />
       )}
-      <Modal
-        status={groupModalStatus}
-        onButtonClick={onChildButtonClick}
-        isGroup={isGroup}
-        isWidth={isWidth}
-        isMobile={isMobile}
-        isMenu={isMenu}
-      >
+      <Modal {...props}>
         <div className=" p-2 flex font-montserrat flex-col justify-between gap-4 ...">
           <aside className="h-[100%] flex flex-col gap-4 w-full overflow-y-auto">
             <div className="bg-white p-4 rounded-2xl h-[100%] flex flex-col ...">

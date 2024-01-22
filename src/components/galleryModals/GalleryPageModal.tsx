@@ -5,22 +5,9 @@ import GalleryContentImg from '../../assets/gallery/GalleryContentImg.svg';
 import GalleryPostImg from '../../assets/gallery/BlogPost.svg';
 import VideoImg from '../../assets/gallery/VideoImg.svg';
 import FollowImg from '../../assets/gallery/FollowImg.svg';
+import { ModalProps } from '../../constants/constants';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-}
-
-const GalleryPageModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-}) => {
+const GalleryPageModal: React.FC<ModalProps> = (props) => {
   const buttonNames = ['Gallery', 'Networks', 'Extras'];
   const BlogImages = [
     GalleryPostImg,
@@ -54,16 +41,10 @@ const GalleryPageModal: React.FC<ParentComponentProps> = ({
   };
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-    >
+    <Modal {...props}>
       <div className="flex font-montserrat flex-col justify-between gap-11 ...">
         <div className="flex justify-between ...">
-          <h2 className="uppercase text-black text-black leading-6 mt-3">Midhun surya</h2>
+          <h2 className="uppercase  text-black leading-6 mt-3">Midhun surya</h2>
           <div className="flex gap-2 rounded-xl bg-neutral-800 p-2">
             {buttonNames.map((buttonName, index) => (
               <button
@@ -81,7 +62,7 @@ const GalleryPageModal: React.FC<ParentComponentProps> = ({
           </div>
         </div>
         <div
-          className="w-full h-screen bg-cover h-[49rem] flex justify-end p-4"
+          className="w-full  bg-cover h-[49rem] flex justify-end p-4"
           style={{ backgroundImage: `url(${GalleryMainImg})` }}
         >
           {enableChangeFragment && (
@@ -177,7 +158,7 @@ const GalleryPageModal: React.FC<ParentComponentProps> = ({
           </h4>
           <h2 className="text-4xl text-neutral-700 leading-14 font-medium text-center">Video</h2>
           <div
-            className="w-full h-screen bg-cover h-[42rem] flex justify-end p-4 mt-3"
+            className="w-full  bg-cover h-[42rem] flex justify-end p-4 mt-3"
             style={{ backgroundImage: `url(${VideoImg})` }}
           >
             <div className="w-16 h-16 bg-white rounded-full flex flex-col gap-1 items-center justify-center">

@@ -1,42 +1,41 @@
 import React, { CSSProperties, ReactNode, useState } from 'react';
 import PlusIcon from '../assets/Plus.svg';
 import CardModal from './lobbyModals/CardModal';
+import { ModalProps } from '../constants/constants';
 
-interface CardProps {
+interface LobbyProps extends ModalProps {
   imageSrc: string;
   altText: string;
   content: ReactNode;
   buttonText: string;
-  onClick: () => void;
   style?: CSSProperties;
-  status: boolean;
 }
 
-const LobbyCard: React.FC<CardProps> = ({
+const LobbyCard: React.FC<LobbyProps> = ({
   imageSrc,
   altText,
   content,
   buttonText,
   style = {},
-  status,
+  isOpened,
 }) => {
-  const [groupModal, setGroupModal] = useState(false);
+  const [showGroupModal, setShowGroupModal] = useState(false);
 
-  const handleGroupModal = () => {
-    setGroupModal((prev) => !prev);
+  const requestGroupModel = () => {
+    setShowGroupModal((prev) => !prev);
   };
 
   return (
     <>
-      <div onClick={handleGroupModal}>
-        {groupModal && (
+      <div onClick={requestGroupModel}>
+        {showGroupModal && (
           <CardModal
-            groupModalStatus={groupModal}
-            onChildButtonClick={handleGroupModal}
+            isOpened={showGroupModal}
+            onRequestClose={requestGroupModel}
             imgUrl={imageSrc}
             textContent={content}
             isGroup={false}
-            isWidth="30%"
+            width={'md:w-2/4'}
             isMobile={false}
           />
         )}
@@ -44,19 +43,19 @@ const LobbyCard: React.FC<CardProps> = ({
       <div
         className={`border font-normal gap-3 font-montserrat rounded-2xl bg-white pt-4 pl-4 pr-4  border-lobby_card_border 
           ${
-            status
+            isOpened
               ? 'pb-6 flex flex-col md:w-[14rem] md:h-[20rem] justify-between ...'
               : ' pb-4 flex flex-row  justify-between ...'
           }
         `}
         style={style}
-        onClick={handleGroupModal}
+        onClick={requestGroupModel}
       >
         <img className="" src={imageSrc} alt={altText} />
-        <div className={status ? '' : 'flex flex-col justify-center w-[40%] ...'}>
+        <div className={isOpened ? '' : 'flex flex-col justify-center w-[40%] ...'}>
           <p className="text-zinc-900 text-sm ">{content}</p>
         </div>
-        <div className={status ? 'w-[100%]' : 'w-[20%] flex flex-col justify-center ...'}>
+        <div className={isOpened ? 'w-[100%]' : 'w-[20%] flex flex-col justify-center ...'}>
           <button className="w-[100%]  py-3 gap-0.5 bg-white border text-xs border-slate-500 text-black rounded-full font-medium md:font-semibold flex items-center justify-center ">
             <img src={PlusIcon} alt="Plus_Icon" className="mr-[1%]" />
             {buttonText}

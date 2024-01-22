@@ -2,22 +2,9 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import SearchIcon from '../../assets/SearchIcon.svg';
 import Figma from '../../assets/figma.svg';
+import { ModalProps } from '../../constants/constants';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-}
-
-const AddWorkSpaceModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-}) => {
+const AddWorkSpaceModal: React.FC<ModalProps> = (props) => {
   const [selectSearch, setSelectSearch] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
@@ -26,14 +13,8 @@ const AddWorkSpaceModal: React.FC<ParentComponentProps> = ({
   };
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-    >
-      <div className="p-4 flex font-montserrat flex-col gap-24 justify-between gap-4 ...">
+    <Modal {...props}>
+      <div className="p-4 flex font-montserrat flex-col  justify-between gap-4 ...">
         <h3 className="text-lg font-semibold leading-8 text-gray-900">Add a network</h3>
         {selectSearch ? (
           <>

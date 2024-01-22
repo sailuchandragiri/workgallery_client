@@ -9,3 +9,12 @@ export const subscription = {
   free: 2300,
   premium: 5150,
 };
+
+export interface ModalProps {
+  isOpened: boolean;
+  onRequestClose: () => void;
+  isGroup: boolean;
+  width: string;
+  isMobile?: boolean;
+  isMenu?: boolean;
+}

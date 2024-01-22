@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
+import { ModalProps } from '../../constants/constants';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onRequestClose: () => void;
-  isGroup: boolean;
-  width: string;
-  isMobile: boolean;
-  isMenu: boolean;
-}
-
-const EditHeadingModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onRequestClose,
-  isGroup,
-  width,
-  isMobile,
-  isMenu,
-}) => {
+const EditHeadingModal: React.FC<ModalProps> = (props) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e) => {
@@ -25,14 +10,7 @@ const EditHeadingModal: React.FC<ParentComponentProps> = ({
   };
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onRequestClose={onRequestClose}
-      isGroup={isGroup}
-      width={width}
-      isMobile={isMobile}
-      isMenu={isMenu}
-    >
+    <Modal {...props}>
       <div className="p-3 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <h3 className="text-lg font-semibold text-gray-900">Edit Heading</h3>
         <label className="leading-8 text-gray-500 text-sm font-medium mt-2">Heading</label>

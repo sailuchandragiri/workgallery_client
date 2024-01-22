@@ -2,25 +2,11 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import Search from '../Search';
 import ProfileIcon from '../../assets/ProfileIcon.svg';
+import { ModalProps } from '../../constants/constants';
 
-interface ParentComponentProps {
-  groupModalStatus: boolean;
-  onChildButtonClick: () => void;
-  isGroup: boolean;
-  isWidth: string;
-  isMobile: boolean;
-  isMenu: boolean;
-}
-
-const HomeModal: React.FC<ParentComponentProps> = ({
-  groupModalStatus,
-  onChildButtonClick,
-  isGroup,
-  isWidth,
-  isMobile,
-  isMenu,
-}) => {
+const HomeModal: React.FC<ModalProps> = (props) => {
   const [isSelected, setIsSelected] = useState('');
+  const { isMobile } = props;
 
   const handleSelectButton = (value: string) => {
     setIsSelected(value);
@@ -56,14 +42,7 @@ const HomeModal: React.FC<ParentComponentProps> = ({
   const buttonOptions = ['Users', 'Communities'];
 
   return (
-    <Modal
-      status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
-      isGroup={isGroup}
-      isWidth={isWidth}
-      isMobile={isMobile}
-      isMenu={isMenu}
-    >
+    <Modal {...props}>
       <div className="p-2 pl-4 flex font-montserrat flex-col justify-between gap-4 ...">
         <Search
           placeholder="Search"

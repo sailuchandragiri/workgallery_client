@@ -101,10 +101,10 @@ const HomePage = () => {
       <div onClick={handleSearchModalClick}>
         {isSearch && (
           <HomeModal
-            groupModalStatus={isSearch}
-            onChildButtonClick={handleSearchModalClick}
+            isOpened={isSearch}
+            onRequestClose={handleSearchModalClick}
             isGroup={false}
-            isWidth="40%"
+            width={'md:w-2/4'}
             isMobile={false}
           />
         )}
@@ -112,10 +112,10 @@ const HomePage = () => {
       <div onClick={handleShowGallery}>
         {showGallery && (
           <GalleryPageModal
-            groupModalStatus={showGallery}
-            onChildButtonClick={handleShowGallery}
+            isOpened={showGallery}
+            onRequestClose={handleShowGallery}
             isGroup={false}
-            isWidth="85%"
+            width={'w-11/12'}
             isMobile={false}
           />
         )}
