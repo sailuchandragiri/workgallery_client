@@ -120,7 +120,7 @@ const Lobby = () => {
             groupModalStatus={enableGroupModal}
             onChildButtonClick={handleChangeGroupModal}
             isGroup={false}
-            isWidth="xl"
+            isWidth="30%"
             isMobile={false}
             isMenu={false}
           />
@@ -131,7 +131,7 @@ const Lobby = () => {
           groupModalStatus={enableGroupModal}
           onChildButtonClick={handleChangeGroupModal}
           isGroup={true}
-           isWidth="3xl"
+           isWidth="30%"
            isMobile={false}
         />
       )} */}
@@ -141,7 +141,7 @@ const Lobby = () => {
             groupModalStatus={enableWorkSpaceModal}
             onChildButtonClick={handleChangeWorkSpaceModal}
             isGroup={false}
-            isWidth="xl"
+            isWidth="30%"
             isMobile={false}
           />
         )}

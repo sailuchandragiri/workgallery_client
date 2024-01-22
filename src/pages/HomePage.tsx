@@ -11,18 +11,24 @@ import HomeProfile from '../assets/HomeProfile.svg';
 import FilledSave from '../assets/FilledSave.svg';
 import EyeIcon from '../assets/HomeEyeIcon.svg';
 import GalleryWhiteIcon from '../assets/GalleryWhiteIcon.svg';
+import GalleryPageModal from '../components/galleryModals/GalleryPageModal';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [requestSearchModel, setRequestSearchModel] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
   const [isSelectedButton, setIsSelectedButton] = useState('');
 
   const handleSelectButton = (value: string) => {
     setIsSelectedButton(value);
   };
 
-  const onRequestClose = () => {
-    setRequestSearchModel((prev) => !prev);
+  const handleSearchModalClick = () => {
+    setIsSearch((prev) => !prev);
+  };
+
+  const handleShowGallery = () => {
+    setShowGallery((prev) => !prev);
   };
 
   const handleSearchChange = (value: string) => {
@@ -92,16 +98,27 @@ const HomePage = () => {
   ];
   return (
     <>
-      <div onClick={onRequestClose}>
-        {requestSearchModel ? (
+      <div onClick={handleSearchModalClick}>
+        {isSearch && (
           <HomeModal
-            groupModalStatus={requestSearchModel}
-            onChildButtonClick={onRequestClose}
+            groupModalStatus={isSearch}
+            onChildButtonClick={handleSearchModalClick}
             isGroup={false}
-            isWidth="xl"
+            isWidth="40%"
             isMobile={false}
           />
-        ) : null}
+        )}
+      </div>
+      <div onClick={handleShowGallery}>
+        {showGallery && (
+          <GalleryPageModal
+            groupModalStatus={showGallery}
+            onChildButtonClick={handleShowGallery}
+            isGroup={false}
+            isWidth="85%"
+            isMobile={false}
+          />
+        )}
       </div>
       <section className="grid-container-mobile md:grid-container-sections font-montserrat bg-zinc-100 px-2 md:px-6 py-6">
         <div className="hidden md:block">
@@ -125,7 +142,10 @@ const HomePage = () => {
                   </div>
                 ))}
               </div>
-              <div className="bg-blue-600 rounded-full py-3 flex gap-2 font-medium justify-center text-white">
+              <div
+                className="bg-blue-600 rounded-full py-3 flex gap-2 font-medium justify-center text-white"
+                onClick={handleShowGallery}
+              >
                 <img src={GalleryWhiteIcon} alt="Gallery_Icon" />
                 View My Gallery
               </div>
@@ -201,7 +221,7 @@ const HomePage = () => {
         <div className="hidden md:block">
           <aside className="h-[100%] flex flex-col gap-4 w-full overflow-y-auto">
             <div className="flex justify-between gap-4">
-              <div className="w-[100%]" onClick={onRequestClose}>
+              <div className="w-[100%]" onClick={handleSearchModalClick}>
                 <Search
                   placeholder="Search school, university etc......"
                   onChange={handleSearchChange}

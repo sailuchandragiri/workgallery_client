@@ -3,18 +3,18 @@ import Modal from '../Modal';
 
 interface ParentComponentProps {
   groupModalStatus: boolean;
-  onChildButtonClick: () => void;
+  onRequestClose: () => void;
   isGroup: boolean;
-  isWidth: string;
+  width: string;
   isMobile: boolean;
   isMenu: boolean;
 }
 
 const EditHeadingModal: React.FC<ParentComponentProps> = ({
   groupModalStatus,
-  onChildButtonClick,
+  onRequestClose,
   isGroup,
-  isWidth,
+  width,
   isMobile,
   isMenu,
 }) => {
@@ -27,9 +27,9 @@ const EditHeadingModal: React.FC<ParentComponentProps> = ({
   return (
     <Modal
       status={groupModalStatus}
-      onButtonClick={onChildButtonClick}
+      onRequestClose={onRequestClose}
       isGroup={isGroup}
-      isWidth={isWidth}
+      width={width}
       isMobile={isMobile}
       isMenu={isMenu}
     >

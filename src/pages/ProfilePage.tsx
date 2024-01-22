@@ -12,54 +12,104 @@ import DeleteIcon from '../assets/DeleteIcon.svg';
 import EducationImage from '../assets/EducationImage.svg';
 import CertificateImage from '../assets/CertificateImage.svg';
 import EditHeadingModal from '../components/profileModals/EditHeadingModal';
-import CreateCommunityModal from '../components/profileModals/CreateCommunityModal';
+import EditProfileModal from '../components/profileModals/EditProfileModal';
+import EditModal from '../components/profileModals/EditModal';
 
 interface TabProps {
   label: string;
-  content: React.ReactNode;
+  child: React.ReactNode;
 }
+
 const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
-  const [editHeading, setEditHeading] = useState(false);
-  const [createCommunity, setCreateCommunity] = useState(false);
+  const [editHeading, setEditHeading] = useState<boolean>(false);
+  const [showEditProfileModel, setShowEditProfileModel] = useState<boolean>(false);
+  const [showEditDataModel, setShowEditDataModel] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<number>(0);
   const shadowStyle = {
     boxShadow: '0 -4px 6px -6px white',
   };
-  const buttons = ['Brand Designer', 'Web Designer', 'Webflow Developer', 'Webflow Developer'];
+  const skills = ['Brand Designer', 'Web Designer', 'Webflow Developer', 'Webflow Developer'];
   const LinkIcons = [InstagramIcon, LinkedInIcon, BehanceIcon];
 
   const handleEditHeading = () => {
     setEditHeading((prev) => !prev);
   };
 
-  const handleCreateCommunity = () => {
-    setCreateCommunity((prev) => !prev);
+  const requestEditProfileModel = () => {
+    setShowEditProfileModel((prev) => !prev);
+  };
+
+  const requestEditDataModel = () => {
+    setShowEditDataModel((prev) => !prev);
   };
 
   const ExtraData = [
     {
       title: 'Fund Raiser',
-      sub_title: 'Vijay Social Welfare Society',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+      heading: 'Vijay Social Welfare Society',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
     },
     {
       title: 'Fund Raiser',
-      sub_title: 'Vijay Social Welfare Society',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+      heading: 'Vijay Social Welfare Society',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
     },
     {
       title: 'Fund Raiser',
-      sub_title: 'Vijay Social Welfare Society',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+      heading: 'Vijay Social Welfare Society',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
     },
     {
       title: 'Fund Raiser',
-      sub_title: 'Vijay Social Welfare Society',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
+      heading: 'Vijay Social Welfare Society',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
+    },
+  ];
+
+  const AchievementsData = [
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      heading: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      heading: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      heading: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      heading: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
+    },
+    {
+      image: CertificateImage,
+      title: 'Certified ScrumMaster (CSM)',
+      heading: 'Scrum Alliance',
+      Date: 'Issued - Dec 2023',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
     },
   ];
 
@@ -67,98 +117,43 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     {
       image: CertificateImage,
       title: 'Certified ScrumMaster (CSM)',
-      sub_title: 'Scrum Alliance',
-      content: 'Issued - Dec 2023',
+      heading: 'Scrum Alliance',
+      description: 'Issued - Dec 2023',
     },
     {
       image: CertificateImage,
       title: 'Certified ScrumMaster (CSM)',
-      sub_title: 'Scrum Alliance',
-      content: 'Issued - Dec 2023',
+      heading: 'Scrum Alliance',
+      description: 'Issued - Dec 2023',
     },
     {
       image: CertificateImage,
       title: 'Certified ScrumMaster (CSM)',
-      sub_title: 'Scrum Alliance',
-      content: 'Issued - Dec 2023',
+      heading: 'Scrum Alliance',
+      description: 'Issued - Dec 2023',
     },
     {
       image: CertificateImage,
       title: 'Certified ScrumMaster (CSM)',
-      sub_title: 'Scrum Alliance',
-      content: 'Issued - Dec 2023',
+      heading: 'Scrum Alliance',
+      description: 'Issued - Dec 2023',
     },
     {
       image: CertificateImage,
       title: 'Certified ScrumMaster (CSM)',
-      sub_title: 'Scrum Alliance',
-      content: 'Issued - Dec 2023',
+      heading: 'Scrum Alliance',
+      description: 'Issued - Dec 2023',
     },
   ];
 
   const EducationData = [
     {
       image: EducationImage,
-      title: 'Lovely Professional University',
-      sub_title: 'B.Design - Product and Industrial Design',
-      content: '2021 - 2023',
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: EducationImage,
-      title: 'Lovely Professional University',
-      sub_title: 'B.Design - Product and Industrial Design',
-      content: '2021 - 2023',
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: EducationImage,
-      title: 'Lovely Professional University',
-      sub_title: 'B.Design - Product and Industrial Design',
-      content: '2021 - 2023',
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: EducationImage,
-      title: 'Lovely Professional University',
-      sub_title: 'B.Design - Product and Industrial Design',
-      content: '2021 - 2023',
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: EducationImage,
-      title: 'Lovely Professional University',
-      sub_title: 'B.Design - Product and Industrial Design',
-      content: '2021 - 2023',
-      buttons: [
+      schoolName: 'Lovely Professional University',
+      degree: 'B.Design - Product and Industrial Design',
+      duration: '2021 - 2023',
+      grade: '7.5',
+      skills: [
         'Web Designer',
         'Web Developer',
         'Webflow Developer',
@@ -172,71 +167,12 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
   const ExperienceData = [
     {
       image: ExperienceImage,
+      designation: 'UI UX Designer',
       title: 'NxtWave Disruptive Technologies',
-      sub_title: 'May 2021 - Aug 2021 · 4 mos',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: ExperienceImage,
-      title: 'NxtWave Disruptive Technologies',
-      sub_title: 'May 2021 - Aug 2021 · 4 mos',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: ExperienceImage,
-      title: 'NxtWave Disruptive Technologies',
-      sub_title: 'May 2021 - Aug 2021 · 4 mos',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: ExperienceImage,
-      title: 'NxtWave Disruptive Technologies',
-      sub_title: 'May 2021 - Aug 2021 · 4 mos',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
-      buttons: [
-        'Web Designer',
-        'Web Developer',
-        'Webflow Developer',
-        'Figma',
-        'Webflow',
-        'Webflow Developer',
-      ],
-    },
-    {
-      image: ExperienceImage,
-      title: 'NxtWave Disruptive Technologies',
-      sub_title: 'May 2021 - Aug 2021 · 4 mos',
-      content:
-        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the content pod by conducting user research and delivering optimal solutions for users.",
-      buttons: [
+      heading: 'May 2021 - Aug 2021 · 4 mos',
+      description:
+        "Producing top-tier designs for NxtWave's academic and intensive programs, as well as developing webpages for all NxtWave products. Employing proactive problem-solving within the description pod by conducting user research and delivering optimal solutions for users.",
+      skills: [
         'Web Designer',
         'Web Developer',
         'Webflow Developer',
@@ -250,24 +186,27 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
   const tabs = [
     {
       label: 'Experience',
-      content: (
+      child: (
         <div className="flex flex-col gap-8">
           {ExperienceData?.map((item) => (
             <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-6">
               <div className="flex flex-col md:flex-row gap-6">
                 <img src={item.image} alt="Experience_Image" />
                 <div className="flex flex-col gap-4">
-                  <h3 className="text-zinc-900 font-semibold text-sm md:text-xl leading-10">
+                  <h2 className="text-zinc-900 font-semibold text-sm md:text-xl leading-10">
+                    {item.designation}
+                  </h2>
+                  <h3 className="text-gray-600 font-semibold text-sm md:text-lg leading-10">
                     {item.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-6">{item.sub_title}</p>
-                  <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+                  <p className="text-xs md:text-sm text-gray-600 leading-6">{item.heading}</p>
+                  <p className="text-gray-600 text-sm leading-6">{item.description}</p>
                 </div>
               </div>
               <div className="flex flex-col gap-4">
                 <h4 className="text-gray-600 text-sm leading-6">Skills</h4>
                 <div className="flex flex-wrap gap-4">
-                  {item?.buttons?.map((button) => (
+                  {item?.skills?.map((button) => (
                     <button className="bg-gray-100 rounded-full text-xs md:text-sm leading-4 px-3 py-1.5">
                       {button}
                     </button>
@@ -284,7 +223,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:description-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -296,24 +235,25 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       label: 'Education',
-      content: (
+      child: (
         <div className="flex flex-col gap-8">
-          {EducationData?.map((item) => (
-            <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-6">
+          {EducationData?.map((education) => (
+            <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-4">
               <div className="flex flex-col md:flex-row gap-6">
-                <img src={item.image} alt="Experience_Image" />
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-6">{item.sub_title}</p>
-                  <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+                <img src={education.image} alt="Experience_Image" />
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-zinc-900 font-semibold text-xl">{education.schoolName}</h3>
+                  <p className="text-sm text-gray-600">{education.degree}</p>
+                  <p className="text-gray-600 text-sm">{education.duration}</p>
+                  <p className="text-sm text-gray-600">Grade: {education.grade}</p>
                 </div>
               </div>
-              <div className="flex flex-col gap-4">
-                <h4 className="text-gray-600 text-sm leading-6">Skills</h4>
+              <div className="flex flex-col gap-2">
+                <h4 className="text-gray-600 text-base font-medium">Skills </h4>
                 <div className="flex flex-wrap gap-4">
-                  {item?.buttons?.map((button) => (
+                  {education?.skills?.map((skill) => (
                     <button className="bg-gray-100 rounded-full text-sm leading-4 px-3 py-1.5">
-                      {button}
+                      {skill}
                     </button>
                   ))}
                 </div>
@@ -328,7 +268,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:description-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -340,14 +280,18 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       label: 'Achievement',
-      content: (
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8">
-          {ExtraData?.map((item) => (
+      child: (
+        <div className="flex flex-col gap-8">
+          {AchievementsData?.map((item) => (
             <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-6">
-              <div className="flex flex-col justify-center gap-4">
-                <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-6">{item.sub_title}</p>
-                <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+              <div className="flex flex-col md:flex-row gap-6">
+                <img src={item.image} alt="Experience_Image" />
+                <div className="flex flex-col justify-center gap-4">
+                  <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-6">{item.heading}</p>
+                  <p className="text-gray-600 text-sm leading-6">{item.Date}</p>
+                  <p className="text-gray-600 text-sm leading-6">{item.description}</p>
+                </div>
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
@@ -359,7 +303,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:description-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -371,7 +315,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
     },
     {
       label: 'Certificates',
-      content: (
+      child: (
         <div className="flex flex-col gap-8">
           {CertificateData?.map((item) => (
             <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-6">
@@ -379,8 +323,8 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                 <img src={item.image} alt="Experience_Image" />
                 <div className="flex flex-col justify-center gap-4">
                   <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-6">{item.sub_title}</p>
-                  <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+                  <p className="text-sm text-gray-600 leading-6">{item.heading}</p>
+                  <p className="text-gray-600 text-sm leading-6">{item.description}</p>
                 </div>
               </div>
               <div className="flex justify-end ">
@@ -393,7 +337,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:description-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -403,16 +347,17 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
         </div>
       ),
     },
+
     {
       label: 'Extras',
-      content: (
+      child: (
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8">
           {ExtraData?.map((item) => (
             <div className="p-6 border border-gray-200 rounded-xl flex flex-col gap-6">
               <div className="flex flex-col justify-center gap-4">
                 <h3 className="text-zinc-900 font-semibold text-xl leading-10">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-6">{item.sub_title}</p>
-                <p className="text-gray-600 text-sm leading-6">{item.content}</p>
+                <p className="text-sm text-gray-600 leading-6">{item.heading}</p>
+                <p className="text-gray-600 text-sm leading-6">{item.description}</p>
               </div>
               <div className="flex justify-end ">
                 <div className="flex gap-4">
@@ -424,7 +369,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
                     </p>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[10px]  md:after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:description-[''] after:absolute after:top-[2px]  after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                 </div>
@@ -442,23 +387,36 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
         {editHeading && (
           <EditHeadingModal
             groupModalStatus={editHeading}
-            onChildButtonClick={handleEditHeading}
+            onRequestClose={handleEditHeading}
             isGroup={false}
-            isWidth="xl"
+            width="30%"
             isMobile={false}
             isMenu={false}
           />
         )}
       </div>
-      <div onClick={handleCreateCommunity}>
-        {createCommunity && (
-          <CreateCommunityModal
-            groupModalStatus={createCommunity}
-            onChildButtonClick={handleCreateCommunity}
+      <div onClick={requestEditProfileModel}>
+        {showEditProfileModel && (
+          <EditProfileModal
+            groupModalStatus={showEditProfileModel}
+            onRequestClose={requestEditProfileModel}
             isGroup={false}
-            isWidth="xl"
+            width="30%"
             isMobile={false}
             isMenu={false}
+          />
+        )}
+      </div>
+      <div onClick={requestEditDataModel}>
+        {showEditDataModel && (
+          <EditModal
+            groupModalStatus={showEditDataModel}
+            onRequestClose={requestEditDataModel}
+            isGroup={false}
+            width="30%"
+            isMobile={false}
+            isMenu={false}
+            tab={tabs[activeTab].label}
           />
         )}
       </div>
@@ -466,7 +424,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
         <aside className="w-[100%] md:w-[35%] border rounded-xl">
           <div className=" bg-white px-6 py-9 rounded-2xl h-[100%] flex flex-col gap-4 ...">
             <div className="flex justify-end">
-              <img src={EditIcon} alt="edit_icon" onClick={handleCreateCommunity} />
+              <img src={EditIcon} alt="edit_icon" onClick={requestEditProfileModel} />
             </div>
             <img src={ProfilePhoto} alt="Profile_Photo" />
             <div className="flex justify-center ... mt-[-36px]  ">
@@ -485,7 +443,7 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
             </div>
             <h3 className="uppercase text-xs text-gray-600 font-semibold">Skills and Tools</h3>
             <div className="flex flex-wrap gap-2">
-              {buttons?.map((item) => (
+              {skills?.map((item) => (
                 <button className="border border-gray-200 rounded-full px-3 py-1.5">{item}</button>
               ))}
             </div>
@@ -540,10 +498,13 @@ const ProfilePage: React.FC<{ tabs: TabProps[] }> = () => {
               ))}
             </div>
             <div className="w-[100%] flex flex-col gap-8 py-4">
-              <div className="w-[100%] text-sm zinc-500 bg-stone-50 text-zinc-400 border-2 border-dashed text-center py-4 rounded-full leading-6">
-                + Add Education
-              </div>
-              {tabs[activeTab].content}
+              <button
+                className="w-[100%] text-sm zinc-500 bg-stone-200 border-2 border-dashed text-center py-4 rounded-full leading-6"
+                onClick={requestEditDataModel}
+              >
+                + Add {tabs[activeTab].label}
+              </button>
+              {tabs[activeTab].child}
             </div>
           </div>
         </div>

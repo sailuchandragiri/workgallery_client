@@ -1,29 +1,28 @@
 import React from 'react';
-
+import Close from '../assets/Close.svg';
 interface ChildComponentProps {
   status: boolean;
-  onButtonClick: () => void;
+  onRequestClose: () => void;
   children: React.ReactNode;
   isGroup: boolean;
-  isWidth: string;
+  width: string;
   isMobile: boolean;
   isMenu: boolean;
 }
 
 const Modal: React.FC<ChildComponentProps> = ({
   status,
-  onButtonClick,
+  onRequestClose,
   children,
   isGroup,
-  isWidth,
-  isMobile,
+  width,
   isMenu,
 }) => {
-  console.log(isWidth, 'width');
+  console.log(width, 'width');
   return (
     <>
       {status && (
-        <div
+        <section
           className={`relative z-10 font-montserrat ${isGroup ? 'bg-zinc-100' : ''}`}
           aria-labelledby="modal-title"
           role="dialog"
@@ -38,21 +37,25 @@ const Modal: React.FC<ChildComponentProps> = ({
               } text-center sm:items-center sm:p-0`}
             >
               <div
-                className={`w-[85%] md:w-[30%] relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-${isWidth}
+                className={`w-[100%] md:w-[${
+                  width === '100%' ? '100%' : '30%'
+                }] my-8 relative p-6 transform overflow-hidden rounded-xl md:rounded-2xl bg-white text-left shadow-xl transition-all
                `}
                 onClick={(e) => e.stopPropagation()}
               >
-                <p
-                  className="text-right text-xl text-gray-500 cursor-pointer"
-                  onClick={onButtonClick}
-                >
-                  x
-                </p>
+                <div className="flex justify-end">
+                  <button
+                    className="border-none hover:scale-110  focus:border-none text-xl text-gray-500 cursor-pointer"
+                    onClick={onRequestClose}
+                  >
+                    <img src={Close} alt="Close" width={35} height={35} />
+                  </button>
+                </div>
                 {children}
               </div>
             </div>
           </div>
-        </div>
+        </section>
       )}
     </>
   );
